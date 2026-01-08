@@ -139,7 +139,7 @@ img {
 .logo {
     font-size: var(--text-2xl);
     font-weight: 700;
-    color: var(--color-orange);
+    color: var(--color-red);
 }
 
 .nav-menu {
@@ -159,7 +159,42 @@ img {
 .nav-link:hover {
     color: var(--color-orange);
 }
+/* --- Dropdown Menu Logic --- */
+.has-dropdown {
+    position: relative;
+}
 
+.dropdown-menu {
+    display: none; /* Keeps it hidden until hover */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-sm);
+    list-style: none;
+    min-width: 200px;
+    z-index: 100;
+}
+
+/* This makes the menu appear when you hover over the link */
+.has-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.dropdown-menu a {
+    font-size: var(--text-sm);
+    text-transform: none;
+    color: var(--color-dark);
+}
+
+.dropdown-menu a:hover {
+    color: var(--color-red); /* Matches your logo red */
+}
 .nav-actions {
     display: flex;
     align-items: center;
