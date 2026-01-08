@@ -13,12 +13,15 @@
    ==================================== */
 
 :root {
-    /* Colors - Based on Double Good's palette */
-    --color-orange: #FF9500;
-    --color-orange-dark: #E68600;
-    --color-blue: #1a5f7a;
-    --color-cyan: #8dd8d1;
-    --color-yellow: #FFCC00;
+    /* Colors - Based on iPOP Gourmet Popcorn branding */
+    --color-red: #E63946;        /* Primary brand red */
+    --color-red-dark: #C1303A;   /* Darker red for hover states */
+    --color-yellow: #FFED00;     /* Bright yellow (popcorn character) */
+    --color-yellow-dark: #FFD700;/* Gold yellow for accents */
+    --color-orange: #E63946;     /* Keep for backward compatibility */
+    --color-orange-dark: #C1303A;
+    --color-blue: #1a5f7a;       /* Keep for contrast sections */
+    --color-cyan: #8dd8d1;       /* Keep for CTA sections */
     --color-green: #4CAF50;
     --color-dark: #1D1C1D;
     --color-gray: #F5F5F5;
@@ -137,9 +140,14 @@ img {
 }
 
 .logo {
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    color: var(--color-orange);
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
