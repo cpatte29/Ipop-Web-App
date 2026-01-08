@@ -262,7 +262,7 @@ img {
 }
 
 .hero-image-placeholder {
-    background: linear-gradient(135deg, #FFB84D 0%, #FFCC00 100%);
+    background: linear-gradient(135deg, #FFCC00 0%, #FFCC00 100%);
     aspect-ratio: 1;
     border-radius: var(--radius-lg);
     display: flex;
