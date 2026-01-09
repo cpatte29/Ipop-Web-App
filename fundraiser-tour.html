@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take a tour of iPOP's fundraising platform - see how easy it is to raise money with gourmet popcorn. 50% profit, zero risk, 100% online.">
+    <title>Fundraiser Tour | iPOP Gourmet Popcorn</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tour-progress {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-gray);
+            z-index: 999;
+        }
+
+        .tour-progress-bar {
+            height: 100%;
+            background: var(--color-red);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .tour-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0;
+        }
+
+        .tour-nav {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            display: flex;
+            gap: 1.6rem;
+            z-index: 100;
+        }
+
+        .tour-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-red);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tour-nav-btn:hover {
+            background: var(--color-red-dark);
+            transform: scale(1.1);
+        }
+
+        .tour-nav-btn:disabled {
+            background: var(--color-gray-medium);
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-gray-medium);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: var(--color-red);
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="iPOP Gourmet Popcorn">
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="how-it-works.html" class="nav-link">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html" class="nav-link">Shop Popcorn</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Start a Fundraiser</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="start-fundraiser.html">Sign Up Now</a></li>
+                            <li><a href="fundraiser-tour.html">Take a Tour</a></li>
+                            <li><a href="#tools">Fundraising Tools</a></li>
+                            <li><a href="#partnerships">Partnerships</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#cart" class="btn-icon" aria-label="Shopping cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+                    <a href="start-fundraiser.html" class="btn btn-primary">Start a Fundraiser</a>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="tour-progress">
+        <div class="tour-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Tour Section 1: Welcome -->
+    <section class="tour-section" id="tour-1" data-step="1">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <div class="step-indicator">
+                    <div class="step-dot active"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                </div>
+
+                <h1 style="font-size: 6rem; color: var(--color-red); margin-bottom: 2.4rem;">Welcome to Your Fundraiser Tour!</h1>
+                <p style="font-size: 2.4rem; color: var(--color-dark); margin-bottom: 4rem;">
+                    Let us show you how easy it is to raise money with iPOP Gourmet Popcorn.
+                    <strong>No experience needed. No risk involved.</strong>
+                </p>
+
+                <div style="display: flex; gap: 3.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
+                    <div style="flex: 1; min-width: 200px; max-width: 250px; padding: 2.4rem; background: var(--color-gray); border-radius: var(--radius-lg);">
+                        <div style="font-size: 4.8rem; font-weight: 700; color: var(--color-red); margin-bottom: 0.8rem;">5 min</div>
+                        <div style="font-size: 1.6rem; color: var(--color-dark);">Tour Duration</div>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 250px; padding: 2.4rem; background: var(--color-gray); border-radius: var(--radius-lg);">
+                        <div style="font-size: 4.8rem; font-weight: 700; color: var(--color-red); margin-bottom: 0.8rem;">5</div>
+                        <div style="font-size: 1.6rem; color: var(--color-dark);">Simple Steps</div>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 250px; padding: 2.4rem; background: var(--color-gray); border-radius: var(--radius-lg);">
+                        <div style="font-size: 4.8rem; font-weight: 700; color: var(--color-red); margin-bottom: 0.8rem;">$0</div>
+                        <div style="font-size: 1.6rem; color: var(--color-dark);">To Get Started</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.8rem; color: var(--color-dark); opacity: 0.8; margin-bottom: 2.4rem;">
+                    👇 Scroll down or use the arrows below to begin your tour
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Section 2: Sign Up -->
+    <section class="tour-section" style="background: var(--color-gray);" id="tour-2" data-step="2">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div class="step-indicator">
+                    <div class="step-dot"></div>
+                    <div class="step-dot active"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+                    <div>
+                        <div style="background: var(--color-red); color: white; display: inline-block; padding: 0.8rem 2rem; border-radius: var(--radius-full); font-weight: 700; margin-bottom: 2.4rem;">STEP 1</div>
+                        <h2 style="font-size: 4.8rem; color: var(--color-dark); margin-bottom: 2.4rem;">Create Your Free Fundraiser</h2>
+                        <p style="font-size: 1.8rem; color: var(--color-dark); margin-bottom: 3.2rem; line-height: 1.7;">
+                            Fill out a simple form with your organization's info. Takes less than 5 minutes. No credit card required. No upfront fees.
+                        </p>
+
+                        <ul style="font-size: 1.8rem; line-height: 2.2; color: var(--color-dark);">
+                            <li style="margin-bottom: 1.6rem;">✓ Tell us about your group</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Set your fundraising goal</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Choose your campaign dates</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Get approved in 24 hours</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div style="background: white; padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                            <h3 style="font-size: 2.4rem; margin-bottom: 2.4rem; color: var(--color-red);">Quick Sign-Up Form</h3>
+                            <div style="margin-bottom: 2rem;">
+                                <div style="font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem;">Organization Name</div>
+                                <div style="background: var(--color-gray); padding: 1.2rem; border-radius: var(--radius-sm); color: var(--color-dark); opacity: 0.6;">Lincoln High Soccer Team</div>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <div style="font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem;">Organization Type</div>
+                                <div style="background: var(--color-gray); padding: 1.2rem; border-radius: var(--radius-sm); color: var(--color-dark); opacity: 0.6;">Sports Team</div>
+                            </div>
+                            <div style="margin-bottom: 2rem;">
+                                <div style="font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem;">Fundraising Goal</div>
+                                <div style="background: var(--color-gray); padding: 1.2rem; border-radius: var(--radius-sm); color: var(--color-dark); opacity: 0.6;">$5,000</div>
+                            </div>
+                            <div style="background: var(--color-red); color: white; padding: 1.6rem; text-align: center; border-radius: var(--radius-sm); font-weight: 700;">
+                                Create My Fundraiser
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Section 3: Get Your Page -->
+    <section class="tour-section" id="tour-3" data-step="3">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div class="step-indicator">
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot active"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+                    <div>
+                        <div style="background: var(--color-yellow); color: var(--color-dark); padding: 3.2rem; border-radius: var(--radius-lg); border: 3px solid var(--color-dark);">
+                            <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.2rem;">YOUR CUSTOM FUNDRAISER PAGE</div>
+                            <div style="font-size: 2.4rem; font-weight: 700; margin-bottom: 2.4rem;">ipop.com/lincoln-soccer</div>
+                            <div style="background: white; padding: 2rem; border-radius: var(--radius-sm); margin-bottom: 1.6rem;">
+                                <div style="font-size: 1.6rem; font-weight: 600; margin-bottom: 0.8rem;">Lincoln High Soccer Team</div>
+                                <div style="font-size: 1.4rem; opacity: 0.7;">Goal: $5,000 | Raised: $2,350</div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; font-size: 1.4rem;">
+                                <div style="background: var(--color-red); color: white; padding: 1.2rem; border-radius: var(--radius-sm); text-align: center; font-weight: 700;">
+                                    Shop Popcorn
+                                </div>
+                                <div style="background: var(--color-dark); color: white; padding: 1.2rem; border-radius: var(--radius-sm); text-align: center; font-weight: 700;">
+                                    Share
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="background: var(--color-red); color: white; display: inline-block; padding: 0.8rem 2rem; border-radius: var(--radius-full); font-weight: 700; margin-bottom: 2.4rem;">STEP 2</div>
+                        <h2 style="font-size: 4.8rem; color: var(--color-dark); margin-bottom: 2.4rem;">Get Your Custom Fundraiser Page</h2>
+                        <p style="font-size: 1.8rem; color: var(--color-dark); margin-bottom: 3.2rem; line-height: 1.7;">
+                            We create a beautiful, personalized fundraiser page with your organization's name, story, and goal. Share your unique link anywhere!
+                        </p>
+
+                        <ul style="font-size: 1.8rem; line-height: 2.2; color: var(--color-dark);">
+                            <li style="margin-bottom: 1.6rem;">✓ Custom URL just for your group</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Your story and photos featured</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Real-time progress tracking</li>
+                            <li style="margin-bottom: 1.6rem;">✓ Easy social sharing buttons</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Section 4: Share & Sell -->
+    <section class="tour-section" style="background: var(--color-gray);" id="tour-4" data-step="4">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div class="step-indicator">
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot active"></div>
+                    <div class="step-dot"></div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 6rem;">
+                    <div style="background: var(--color-red); color: white; display: inline-block; padding: 0.8rem 2rem; border-radius: var(--radius-full); font-weight: 700; margin-bottom: 2.4rem;">STEP 3</div>
+                    <h2 style="font-size: 4.8rem; color: var(--color-dark); margin-bottom: 2.4rem;">Share Your Link & Start Selling</h2>
+                    <p style="font-size: 1.8rem; color: var(--color-dark); max-width: 800px; margin: 0 auto 4rem;">
+                        Share your fundraiser link via email, text, social media, or in person. Every order placed through your link earns your group 50% profit!
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.4rem; margin-bottom: 4rem;">
+                    <div style="background: white; padding: 3rem; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md);">
+                        <div style="font-size: 4rem; margin-bottom: 1.6rem;">📧</div>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">Email</h3>
+                        <p style="font-size: 1.4rem; color: var(--color-dark); opacity: 0.7;">Send to friends & family</p>
+                    </div>
+
+                    <div style="background: white; padding: 3rem; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md);">
+                        <div style="font-size: 4rem; margin-bottom: 1.6rem;">📱</div>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">Text Message</h3>
+                        <p style="font-size: 1.4rem; color: var(--color-dark); opacity: 0.7;">Quick & personal</p>
+                    </div>
+
+                    <div style="background: white; padding: 3rem; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md);">
+                        <div style="font-size: 4rem; margin-bottom: 1.6rem;">🌐</div>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">Social Media</h3>
+                        <p style="font-size: 1.4rem; color: var(--color-dark); opacity: 0.7;">Facebook, Instagram, etc</p>
+                    </div>
+
+                    <div style="background: white; padding: 3rem; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md);">
+                        <div style="font-size: 4rem; margin-bottom: 1.6rem;">💬</div>
+                        <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">In Person</h3>
+                        <p style="font-size: 1.4rem; color: var(--color-dark); opacity: 0.7;">Show QR code on phone</p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--color-yellow) 0%, #FFD700 100%); padding: 4rem; border-radius: var(--radius-lg); text-align: center;">
+                    <p style="font-size: 2.4rem; font-weight: 700; color: var(--color-dark);">
+                        💡 Pro Tip: The more you share, the more you raise! Top fundraisers share their link 5-10 times during their campaign.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Section 5: Earn Money -->
+    <section class="tour-section" id="tour-5" data-step="5">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div class="step-indicator">
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot active"></div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 6rem;">
+                    <div style="background: var(--color-red); color: white; display: inline-block; padding: 0.8rem 2rem; border-radius: var(--radius-full); font-weight: 700; margin-bottom: 2.4rem;">STEP 4</div>
+                    <h2 style="font-size: 4.8rem; color: var(--color-dark); margin-bottom: 2.4rem;">Earn 50% Profit Automatically</h2>
+                    <p style="font-size: 1.8rem; color: var(--color-dark); max-width: 800px; margin: 0 auto 4rem;">
+                        Watch the orders roll in! We handle everything - payment processing, packing, shipping, and customer service. You just collect your profit.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.2rem; margin-bottom: 6rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 6rem; margin-bottom: 1.6rem;">📦</div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--color-dark);">We Pack & Ship</h3>
+                        <p style="font-size: 1.6rem; color: var(--color-dark); opacity: 0.8;">Orders ship directly to supporters. No inventory for you to manage!</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="font-size: 6rem; margin-bottom: 1.6rem;">💳</div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--color-dark);">We Process Payments</h3>
+                        <p style="font-size: 1.6rem; color: var(--color-dark); opacity: 0.8;">Secure online payments. No cash to collect or checks to deposit!</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="font-size: 6rem; margin-bottom: 1.6rem;">💰</div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--color-dark);">You Get Paid</h3>
+                        <p style="font-size: 1.6rem; color: var(--color-dark); opacity: 0.8;">Earn 50% of every sale automatically. Funds sent via check or direct deposit!</p>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-red); color: white; padding: 6rem 4rem; border-radius: var(--radius-lg); text-align: center;">
+                    <h3 style="font-size: 3.6rem; margin-bottom: 2.4rem; font-weight: 700;">Ready to Start Your Fundraiser?</h3>
+                    <p style="font-size: 2rem; margin-bottom: 3.2rem; opacity: 0.95;">
+                        Join thousands of organizations raising money the easy way with iPOP Gourmet Popcorn!
+                    </p>
+                    <div style="display: flex; gap: 2.4rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="start-fundraiser.html" class="btn btn-dark btn-lg" style="font-size: 2rem; padding: 2rem 4rem;">
+                            Start My Fundraiser Now
+                        </a>
+                        <a href="how-it-works.html" class="btn btn-secondary btn-lg" style="font-size: 2rem; padding: 2rem 4rem; background: white; color: var(--color-dark);">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Arrows -->
+    <div class="tour-nav">
+        <button class="tour-nav-btn" id="prevBtn" onclick="navigateTour(-1)">←</button>
+        <button class="tour-nav-btn" id="nextBtn" onclick="navigateTour(1)">→</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">iPOP</div>
+                    <p class="footer-tagline">Gourmet Popcorn Fundraising Made Easy</p>
+                    <p class="footer-copyright">© 2024 iPOP Gourmet Popcorn. All rights reserved.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Fundraising</h4>
+                        <ul class="footer-menu">
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="fundraiser-tour.html">Take a Tour</a></li>
+                            <li><a href="start-fundraiser.html">Start a Fundraiser</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Products</h4>
+                        <ul class="footer-menu">
+                            <li><a href="shop.html">Shop Popcorn</a></li>
+                            <li><a href="#flavors">Flavors</a></li>
+                            <li><a href="#gifts">Gift Boxes</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <ul class="footer-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        function updateProgress() {
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentStep === 1;
+            document.getElementById('nextBtn').disabled = currentStep === totalSteps;
+
+            // Update step indicators
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                if (index + 1 === currentStep) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function navigateTour(direction) {
+            const newStep = currentStep + direction;
+            if (newStep >= 1 && newStep <= totalSteps) {
+                currentStep = newStep;
+                const section = document.getElementById('tour-' + currentStep);
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateProgress();
+            }
+        }
+
+        // Detect scroll position and update current step
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const sections = document.querySelectorAll('.tour-section');
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                            const step = parseInt(section.dataset.step);
+                            if (step !== currentStep) {
+                                currentStep = step;
+                                updateProgress();
+                            }
+                        }
+                    });
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
