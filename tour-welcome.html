@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - iPOP Fundraising Tour</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        .tour-header {
+            padding: 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .tour-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .tour-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .badges-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .badge {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .badge:nth-child(1) {
+            top: 15%;
+            left: 20%;
+            background: #fff;
+            border: 3px solid #FFA500;
+            animation-delay: 0s;
+        }
+
+        .badge:nth-child(2) {
+            top: 12%;
+            right: 15%;
+            background: #4169E1;
+            color: white;
+            animation-delay: 1s;
+        }
+
+        .badge:nth-child(3) {
+            top: 35%;
+            left: 10%;
+            background: #fff;
+            border: 3px solid #32CD32;
+            animation-delay: 2s;
+        }
+
+        .badge:nth-child(4) {
+            top: 28%;
+            right: 25%;
+            background: #FF69B4;
+            color: white;
+            animation-delay: 0.5s;
+        }
+
+        .badge:nth-child(5) {
+            top: 40%;
+            left: 35%;
+            background: #fff;
+            border: 3px solid #9370DB;
+            animation-delay: 1.5s;
+        }
+
+        .badge:nth-child(6) {
+            top: 45%;
+            right: 10%;
+            background: #7B68EE;
+            color: white;
+            animation-delay: 2.5s;
+        }
+
+        .badge:nth-child(7) {
+            bottom: 35%;
+            left: 15%;
+            background: #FF1493;
+            color: white;
+            animation-delay: 3s;
+        }
+
+        .badge:nth-child(8) {
+            bottom: 30%;
+            left: 42%;
+            background: #fff;
+            border: 3px solid #FF6347;
+            animation-delay: 1.8s;
+        }
+
+        .badge:nth-child(9) {
+            bottom: 25%;
+            right: 20%;
+            background: #fff;
+            border: 3px solid #FFA500;
+            animation-delay: 2.2s;
+        }
+
+        .badge:nth-child(10) {
+            top: 20%;
+            left: 50%;
+            background: #FFA500;
+            color: white;
+            width: 120px;
+            height: 120px;
+            font-size: 16px;
+            animation-delay: 0.8s;
+        }
+
+        .tour-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .tour-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2C2C2C;
+            margin: 0 0 20px 0;
+        }
+
+        .tour-content p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0 0 40px 0;
+        }
+
+        .btn-start-tour {
+            display: inline-block;
+            background: #2C2C2C;
+            color: white;
+            padding: 16px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn-start-tour:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        .skip-tour {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .skip-tour:hover {
+            color: #2C2C2C;
+        }
+
+        @media (max-width: 768px) {
+            .tour-content h1 {
+                font-size: 36px;
+            }
+
+            .tour-content p {
+                font-size: 16px;
+            }
+
+            .badge {
+                width: 60px;
+                height: 60px;
+                font-size: 11px;
+            }
+
+            .badge:nth-child(10) {
+                width: 90px;
+                height: 90px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="tour-header">
+        <a href="index.html">
+            <img src="logo.png" alt="iPOP Gourmet Popcorn" class="tour-logo">
+        </a>
+    </header>
+
+    <div class="tour-container">
+        <div class="badges-container">
+            <div class="badge">📱</div>
+            <div class="badge">GOOD<br>GOOD</div>
+            <div class="badge">💰</div>
+            <div class="badge">❤️</div>
+            <div class="badge">🎯</div>
+            <div class="badge">POP<br>OFF!</div>
+            <div class="badge">POP IT<br>LIKE IT'S<br>HOT</div>
+            <div class="badge">LET'S<br>GO!</div>
+            <div class="badge">🥇</div>
+            <div class="badge">POPCORN<br>ON A<br>MISSION</div>
+        </div>
+
+        <div class="tour-content">
+            <h1>Welcome!</h1>
+            <p>Let's explore the key features for successful<br>fundraising with iPOP Gourmet Popcorn.</p>
+            <a href="tour-day4.html" class="btn-start-tour">Start Tour</a>
+            <a href="start-fundraiser.html" class="skip-tour">Skip Tour</a>
+        </div>
+    </div>
+</body>
+</html>

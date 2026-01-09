@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Day Campaign - iPOP Fundraising Tour</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fff;
+        }
+
+        .tour-header {
+            padding: 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tour-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .skip-tour {
+            color: #4169E1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .skip-tour:hover {
+            text-decoration: underline;
+        }
+
+        .tour-container {
+            min-height: calc(100vh - 81px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .tour-content {
+            display: flex;
+            align-items: center;
+            gap: 100px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .phone-mockup {
+            flex-shrink: 0;
+            width: 380px;
+            background: #F5F5F5;
+            border-radius: 40px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .calendar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .calendar-header {
+            background: #2C2C2C;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .calendar-body {
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .dollar-icon {
+            width: 80px;
+            height: 80px;
+            background: #32CD32;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .arrow-line {
+            position: absolute;
+            bottom: 80px;
+            right: 60px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .arrow-line::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: #32CD32;
+            border-radius: 2px;
+            transform: rotate(45deg);
+            transform-origin: left center;
+        }
+
+        .arrow-line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -8px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid #32CD32;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .tour-text {
+            flex: 1;
+        }
+
+        .tour-text h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2C2C2C;
+            line-height: 1.3;
+            margin: 0 0 60px 0;
+        }
+
+        .tour-navigation {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #2C2C2C;
+        }
+
+        .btn-next {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: none;
+            color: #2C2C2C;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-next:hover {
+            transform: translateX(5px);
+        }
+
+        .btn-next::after {
+            content: '→';
+            font-size: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .tour-content {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .phone-mockup {
+                width: 320px;
+                padding: 40px 30px;
+            }
+
+            .tour-text h2 {
+                font-size: 32px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tour-header {
+                padding: 15px 20px;
+            }
+
+            .phone-mockup {
+                width: 280px;
+                padding: 30px 20px;
+            }
+
+            .calendar-header {
+                font-size: 24px;
+                padding: 30px;
+            }
+
+            .calendar-body {
+                padding: 40px;
+            }
+
+            .tour-text h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="tour-header">
+        <a href="index.html">
+            <img src="logo.png" alt="iPOP Gourmet Popcorn" class="tour-logo">
+        </a>
+        <a href="start-fundraiser.html" class="skip-tour">Skip Tour</a>
+    </header>
+
+    <div class="tour-container">
+        <div class="tour-content">
+            <div class="phone-mockup">
+                <div class="calendar-card">
+                    <div class="calendar-header">Day 4</div>
+                    <div class="calendar-body">
+                        <div class="dollar-icon">$</div>
+                        <div class="arrow-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-text">
+                <h2>All events last 4 days to build urgency and reduce fatigue</h2>
+
+                <div class="tour-navigation">
+                    <div class="dot-nav">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <button class="btn-next" onclick="window.location.href='tour-store.html'">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
