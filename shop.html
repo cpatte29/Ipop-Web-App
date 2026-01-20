@@ -33,6 +33,9 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            background: white;
+            font-family: inherit;
+            width: 100%;
         }
 
         .size-option:hover {
@@ -141,266 +144,254 @@
             <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3.2rem;">
                 <!-- Product 1: Kettle Corn -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);">
-                        🍿
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="kettle corn.png" alt="Kettle Corn Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Kettle Corn</h3>
                     <p class="step-description">Lightly sweetened with a hint of salt. Perfectly balanced sweet and savory flavor.</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Kettle Corn', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Kettle Corn', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 2: Caramel Apple -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #90EE90 0%, #228B22 100%);">
-                        🍏
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="caramel Apple.png" alt="Caramel Apple Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Caramel Apple</h3>
                     <p class="step-description">Sweet caramel coating with crisp apple flavor. A fall favorite year-round!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Caramel Apple', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Caramel Apple', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 3: Buffalo Ranch -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
                     <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
-                        <img src="buffalo-ranch.png" alt="Buffalo Ranch Popcorn" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Buffalo ranch.png" alt="Buffalo Ranch Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Buffalo Ranch</h3>
                     <p class="step-description">Spicy buffalo heat meets cool ranch. Bold flavor for the adventurous!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Buffalo Ranch', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Buffalo Ranch', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 4: Birthday Cake -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
                     <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
-                        <img src="birthday-cake.png" alt="Birthday Cake Popcorn" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Birthday cake.png" alt="Birthday Cake Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Birthday Cake</h3>
                     <p class="step-description">Sweet vanilla cake flavor with colorful sprinkles. Celebrate any day!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Birthday Cake', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Birthday Cake', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 5: White Cheddar -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FFFACD 0%, #F5E6D3 100%);">
-                        🧀
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="White cheddar.png" alt="White Cheddar Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">White Cheddar</h3>
                     <p class="step-description">Creamy white cheddar coating. Rich and smooth cheese flavor.</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('White Cheddar', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('White Cheddar', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 6: Caramel Cheddar -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">
-                        🧡
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Caramel Cheddar.png" alt="Caramel Cheddar Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Caramel Cheddar</h3>
                     <p class="step-description">Sweet caramel meets sharp cheddar. Chicago-style perfection!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Caramel Cheddar', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Caramel Cheddar', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 7: Milk Chocolate Drizzle -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #654321 100%);">
-                        🍫
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Milk Chocolate Drizzle.png" alt="Milk Chocolate Drizzle Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Milk Chocolate Drizzle</h3>
                     <p class="step-description">Gourmet popcorn drizzled with rich milk chocolate. Pure indulgence!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Milk Chocolate Drizzle', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Milk Chocolate Drizzle', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 8: Rainbow -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FF69B4 0%, #9370DB 50%, #4169E1 100%);">
-                        🌈
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Rainbow.png" alt="Rainbow Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Rainbow</h3>
                     <p class="step-description">Vibrant fruity flavors in every colorful bite. Fun for all ages!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Rainbow', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Rainbow', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 9: Cheddar Cheese -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);">
-                        🧀
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Cheddar Cheese.png" alt="Cheddar Cheese Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Cheddar Cheese</h3>
                     <p class="step-description">Bold, sharp cheddar flavor. Classic cheese popcorn done right!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Cheddar Cheese', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Cheddar Cheese', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 10: Pineapple -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FFFF00 0%, #FFD700 100%);">
-                        🍍
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Pineapple.png" alt="Pineapple Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Pineapple</h3>
                     <p class="step-description">Tropical pineapple sweetness. Bring the island vibes home!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Pineapple', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Pineapple', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 11: Cinnamon Twist -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
-                    <div class="product-image" style="background: linear-gradient(135deg, #D2691E 0%, #8B4513 100%);">
-                        ✨
+                    <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
+                        <img src="Cinnamon Twist.png" alt="Cinnamon Twist Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Cinnamon Twist</h3>
                     <p class="step-description">Sweet cinnamon sugar coating. Warm, cozy flavor in every bite!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Cinnamon Twist', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Cinnamon Twist', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
 
                 <!-- Product 12: Caramel -->
                 <article class="step-card" style="border: 2px solid var(--color-gray-medium); border-radius: var(--radius-lg); padding: 2.4rem;">
                     <div class="product-image" style="background: #f5f5f5; overflow: hidden;">
-                        <img src="caramel.png" alt="Caramel Popcorn" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Caramel.png" alt="Caramel Popcorn" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 class="step-title" style="color: var(--color-red);">Caramel</h3>
                     <p class="step-description">Classic buttery caramel. Sweet, crunchy perfection!</p>
                     <div class="size-options">
-                        <div class="size-option">
+                        <button class="size-option" onclick="addToCart('Caramel', 'Snack Size', 10.00)" type="button">
                             <div class="size-name">Snack Size</div>
                             <div class="size-detail">4 cups</div>
                             <div class="size-price">$10.00</div>
-                        </div>
-                        <div class="size-option">
+                        </button>
+                        <button class="size-option" onclick="addToCart('Caramel', 'Value Size', 15.00)" type="button">
                             <div class="size-name">Value Size</div>
                             <div class="size-detail">1 gallon</div>
                             <div class="size-price">$15.00</div>
-                        </div>
+                        </button>
                     </div>
-                    <a href="#" class="btn btn-primary" style="width: 100%;">Add to Cart</a>
                 </article>
             </div>
         </div>
@@ -553,5 +544,6 @@
     </footer>
 
     <script src="navigation.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
