@@ -1,5 +1,26 @@
 // Cart functionality for iPOP Gourmet Popcorn
 
+// Get fundraiser attribution from URL or localStorage
+function getFundraiserAttribution() {
+    // First check URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fundraiserSlug = urlParams.get('fundraiser');
+
+    if (fundraiserSlug) {
+        // Store in localStorage for this session
+        localStorage.setItem('ipop_current_fundraiser', fundraiserSlug);
+        return fundraiserSlug;
+    }
+
+    // Otherwise check localStorage
+    return localStorage.getItem('ipop_current_fundraiser') || null;
+}
+
+// Clear fundraiser attribution (call when cart is cleared)
+function clearFundraiserAttribution() {
+    localStorage.removeItem('ipop_current_fundraiser');
+}
+
 // Initialize cart from localStorage or create empty cart
 function getCart() {
     const cartData = localStorage.getItem('ipopCart');
@@ -15,6 +36,7 @@ function saveCart(cart) {
 // Add item to cart
 function addToCart(productName, size, price) {
     const cart = getCart();
+    const fundraiser = getFundraiserAttribution();
 
     // Check if item already exists in cart
     const existingItemIndex = cart.findIndex(
@@ -25,13 +47,20 @@ function addToCart(productName, size, price) {
         // Increment quantity if item exists
         cart[existingItemIndex].quantity += 1;
     } else {
-        // Add new item to cart
-        cart.push({
+        // Add new item to cart (include fundraiser if present)
+        const cartItem = {
             productName: productName,
             size: size,
             price: price,
             quantity: 1
-        });
+        };
+
+        // Add fundraiser attribution if exists
+        if (fundraiser) {
+            cartItem.fundraiser = fundraiser;
+        }
+
+        cart.push(cartItem);
     }
 
     saveCart(cart);
@@ -185,6 +214,7 @@ function updateQuantity(productName, size, newQuantity) {
 // Clear entire cart
 function clearCart() {
     localStorage.removeItem('ipopCart');
+    clearFundraiserAttribution();
     updateCartBadge();
 }
 

@@ -349,20 +349,99 @@
 
     <script src="navigation.js"></script>
     <script src="cart.js"></script>
+    <script src="fundraiser.js"></script>
     <script>
         // Form submission handler
         document.getElementById('fundraiser-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            // Collect form data
+            const orgName = document.getElementById('org-name').value;
+            const orgType = document.getElementById('org-type').value;
+            const orgTypeLabel = document.getElementById('org-type').selectedOptions[0].text;
+            const contactName = document.getElementById('contact-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const goalValue = document.getElementById('goal').value;
+            const participants = document.getElementById('participants').value;
+            const message = document.getElementById('message').value;
+
+            // Generate unique slug
+            const slug = window.fundraiserUtils.generateSlug(orgName);
+
+            // Check if slug already exists
+            const existing = window.fundraiserUtils.loadFundraiserData(slug);
+            let finalSlug = slug;
+
+            if (existing) {
+                // Add timestamp to make it unique
+                finalSlug = slug + '-' + Date.now();
+            }
+
+            // Create fundraiser object
+            const fundraiserData = {
+                slug: finalSlug,
+                orgName: orgName,
+                orgType: orgTypeLabel,
+                orgTypeValue: orgType,
+                contactName: contactName,
+                email: email,
+                phone: phone,
+                goal: parseInt(goalValue),
+                participants: participants || 0,
+                description: message || `Help ${orgName} reach their fundraising goal by purchasing delicious gourmet popcorn!`,
+                createdAt: new Date().toISOString(),
+                status: 'active'
+            };
+
+            // Save fundraiser data
+            window.fundraiserUtils.saveFundraiser(fundraiserData);
+
+            // Generate fundraiser URL
+            const fundraiserUrl = window.location.origin + '/fundraiser.html?id=' + finalSlug;
+
+            // Update success message with fundraiser link
+            const successMessage = document.getElementById('success-message');
+            successMessage.innerHTML = `
+                <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">🎉 Your Fundraiser is Live!</h3>
+                <p style="font-size: 1.8rem; margin-bottom: 2.4rem;">
+                    Great news, ${contactName}! Your fundraiser for <strong>${orgName}</strong> is now active.
+                </p>
+                <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 8px; margin-bottom: 2.4rem;">
+                    <p style="font-size: 1.4rem; margin-bottom: 1rem; opacity: 0.9;">Your Unique Fundraiser Link:</p>
+                    <input
+                        type="text"
+                        value="${fundraiserUrl}"
+                        readonly
+                        onclick="this.select()"
+                        style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: none; border-radius: 4px; background: white; color: #333; text-align: center; font-weight: 600; cursor: pointer;"
+                    >
+                    <p style="font-size: 1.2rem; margin-top: 1rem; opacity: 0.8;">Click the link to select and copy</p>
+                </div>
+                <div style="display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.4rem;">
+                    <a href="${fundraiserUrl}" class="btn" style="background: white; color: #E63946; font-size: 1.6rem; padding: 1.4rem 2.8rem; text-decoration: none; border-radius: 8px; font-weight: 700;">
+                        View Your Page
+                    </a>
+                    <button onclick="window.location.reload()" class="btn" style="background: rgba(255,255,255,0.2); color: white; font-size: 1.6rem; padding: 1.4rem 2.8rem; border: 2px solid white; border-radius: 8px; font-weight: 700; cursor: pointer;">
+                        Create Another
+                    </button>
+                </div>
+                <p style="font-size: 1.6rem; line-height: 1.6;">
+                    Share your fundraiser link with friends, family, and supporters.
+                    Every purchase through your link contributes <strong>50% profit</strong> toward your goal!
+                </p>
+            `;
+
             // Hide form and show success message
             document.getElementById('fundraiser-form').style.display = 'none';
-            document.getElementById('success-message').style.display = 'block';
+            successMessage.style.display = 'block';
 
             // Scroll to success message
-            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // In a real application, you would send this data to your server
-            console.log('Form submitted!');
+            // Log for debugging (in production, this would send to server)
+            console.log('Fundraiser created:', fundraiserData);
+            console.log('Fundraiser URL:', fundraiserUrl);
         });
     </script>
 </body>

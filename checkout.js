@@ -1,5 +1,43 @@
 // Checkout page functionality
 
+// Display fundraiser attribution banner
+function displayFundraiserAttribution() {
+    const fundraiserSlug = getFundraiserAttribution();
+    if (!fundraiserSlug) return;
+
+    // Try to load fundraiser data
+    const fundraisers = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+    const fundraiser = fundraisers.find(f => f.slug === fundraiserSlug);
+
+    if (!fundraiser) return;
+
+    // Create attribution banner
+    const banner = document.createElement('div');
+    banner.style.cssText = `
+        background: linear-gradient(135deg, #E63946 0%, #c62e39 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2.4rem;
+        text-align: center;
+    `;
+    banner.innerHTML = `
+        <div style="font-size: 1.4rem; margin-bottom: 0.4rem; opacity: 0.9;">
+            🎉 Supporting Fundraiser
+        </div>
+        <div style="font-size: 2rem; font-weight: 700;">
+            ${fundraiser.orgName}
+        </div>
+        <div style="font-size: 1.4rem; margin-top: 0.4rem; opacity: 0.9;">
+            50% of this order supports their fundraising goal
+        </div>
+    `;
+
+    // Insert before cart items
+    const container = document.getElementById('cartItemsContainer');
+    container.parentElement.insertBefore(banner, container);
+}
+
 // Render cart items
 function renderCartItems() {
     const cart = getCart();
@@ -87,6 +125,7 @@ function updateOrderSummary() {
 
 // Handle checkout form submission
 document.addEventListener('DOMContentLoaded', function() {
+    displayFundraiserAttribution();
     renderCartItems();
 
     const checkoutForm = document.getElementById('checkoutForm');
@@ -100,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Get fundraiser attribution
+            const fundraiserSlug = getFundraiserAttribution();
+
             // Get form data
             const formData = {
                 name: document.getElementById('name').value,
@@ -107,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 phone: document.getElementById('phone').value,
                 notes: document.getElementById('notes').value,
                 cart: cart,
+                fundraiser: fundraiserSlug, // Include fundraiser attribution
                 subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                 tax: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.0925,
                 total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 1.0925
