@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support our fundraiser - iPOP Gourmet Popcorn">
+    <title id="page-title">Support Our Fundraiser | iPOP Gourmet Popcorn</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .fundraiser-hero {
+            background: linear-gradient(135deg, var(--color-red) 0%, #c62e39 100%);
+            color: white;
+            padding: 8rem 0 6rem;
+            margin-top: 80px;
+        }
+
+        .fundraiser-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .org-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fundraiser-title {
+            font-size: 4.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .fundraiser-description {
+            font-size: 2rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 3.2rem;
+        }
+
+        .progress-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .progress-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-gray);
+            padding: 3.2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.4rem;
+            margin-bottom: 2.4rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.6rem;
+            font-weight: 700;
+            color: var(--color-red);
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 1.4rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1.6rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-red) 0%, #ff5566 100%);
+            border-radius: 100px;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1.6rem;
+        }
+
+        .progress-percentage {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--color-text-secondary);
+        }
+
+        .support-section {
+            padding: 6rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .support-cta {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .support-title {
+            font-size: 3.6rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.6rem;
+        }
+
+        .support-subtitle {
+            font-size: 1.8rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 3.2rem;
+            line-height: 1.6;
+        }
+
+        .support-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.4rem;
+            margin: 4rem 0;
+        }
+
+        .benefit {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .benefit-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-dark);
+        }
+
+        .share-section {
+            background: var(--color-gray);
+            padding: 6rem 0;
+        }
+
+        .share-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .share-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1.6rem;
+        }
+
+        .share-text {
+            font-size: 1.6rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.4rem;
+        }
+
+        .share-link-container {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 2.4rem;
+        }
+
+        .share-link-input {
+            flex: 1;
+            padding: 1.6rem;
+            font-size: 1.6rem;
+            border: 2px solid var(--color-gray-medium);
+            border-radius: var(--radius-sm);
+            background: white;
+        }
+
+        .copy-btn {
+            padding: 1.6rem 3.2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            background: var(--color-dark);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #333;
+        }
+
+        .copy-btn.copied {
+            background: #4CAF50;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.4rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border: 2px solid var(--color-gray-medium);
+            border-radius: var(--radius-sm);
+            background: white;
+            color: var(--color-dark);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-button:hover {
+            border-color: var(--color-red);
+            color: var(--color-red);
+        }
+
+        .error-state {
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+
+        .error-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+        }
+
+        .error-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .error-text {
+            font-size: 1.8rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.4rem;
+        }
+
+        @media (max-width: 768px) {
+            .fundraiser-title {
+                font-size: 3.2rem;
+            }
+
+            .progress-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .share-link-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="iPOP Gourmet Popcorn">
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Fundraising</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="tour-welcome.html">Take a Tour</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="shop.html" class="nav-link">Shop Popcorn</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Why iPOP</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#success-stories">Success Stories</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="checkout.html" class="btn-icon" aria-label="Shopping cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+                    <a href="start-fundraiser.html" class="btn btn-primary">Start a Fundraiser</a>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content (populated by JavaScript) -->
+    <main id="fundraiser-content">
+        <!-- Content will be dynamically loaded -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="iPOP Gourmet Popcorn" class="footer-logo">
+                    <p class="footer-tagline">Making fundraising fun and profitable!</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Fundraising</h4>
+                        <ul class="footer-menu">
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="start-fundraiser.html">Start a Fundraiser</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Products</h4>
+                        <ul class="footer-menu">
+                            <li><a href="shop.html">Shop Popcorn</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Company</h4>
+                        <ul class="footer-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 class="footer-heading">Visit Us</h4>
+                    <p class="newsletter-description" style="margin-bottom: 1.6rem;"><strong>Open Daily</strong><br>
+                    Mon - Sat: 10am - 6pm<br>
+                    Sun: Closed</p>
+                    <p class="newsletter-description" style="margin-bottom: 1.6rem;">
+                    <strong>Location</strong><br>
+                    1605 N Germantown Pkwy Ste 112<br>
+                    Cordova, TN 38018</p>
+                    <p class="newsletter-description">
+                    <strong>Contact</strong><br>
+                    Phone: (901) 239-4767<br>
+                    Email: <a href="mailto:contact@ipopgourmet.com" style="color: var(--color-yellow); text-decoration: none;">contact@ipopgourmet.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="cart.js"></script>
+    <script src="fundraiser.js"></script>
+</body>
+</html>
