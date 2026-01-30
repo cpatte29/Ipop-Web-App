@@ -237,10 +237,9 @@
                     </p>
                 </form>
 
-                <!-- Success Message (hidden by default) -->
-                <div id="success-message" style="display: none; background: #4CAF50; color: white; padding: 3.2rem; border-radius: var(--radius-lg); text-align: center; margin-top: 3.2rem;">
-                    <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">🎉 Thank You!</h3>
-                    <p style="font-size: 1.8rem;">Your fundraiser request has been submitted successfully. Our team will contact you within 24 hours to get your fundraiser set up!</p>
+                <!-- Success Message (hidden by default, populated by JavaScript) -->
+<div id="success-message" style="display: none; background: #4CAF50; color: white; padding: 3.2rem; border-radius: var(--radius-lg); text-align: center; margin-top: 3.2rem;">
+                    <!-- Content will be populated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -355,6 +354,15 @@
         document.getElementById('fundraiser-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            console.log('Form submitted - starting fundraiser creation...');
+
+            // Check if fundraiserUtils is available
+            if (!window.fundraiserUtils) {
+                console.error('fundraiserUtils not loaded! Make sure fundraiser.js is loaded.');
+                alert('Error: Fundraiser system not loaded. Please refresh the page and try again.');
+                return;
+            }
+
             // Collect form data
             const orgName = document.getElementById('org-name').value;
             const orgType = document.getElementById('org-type').value;
@@ -366,8 +374,11 @@
             const participants = document.getElementById('participants').value;
             const message = document.getElementById('message').value;
 
+            console.log('Form data collected:', { orgName, orgType, contactName, email });
+
             // Generate unique slug
             const slug = window.fundraiserUtils.generateSlug(orgName);
+            console.log('Generated slug:', slug);
 
             // Check if slug already exists
             const existing = window.fundraiserUtils.loadFundraiserData(slug);
@@ -396,12 +407,15 @@
 
             // Save fundraiser data
             window.fundraiserUtils.saveFundraiser(fundraiserData);
+            console.log('Fundraiser data saved:', fundraiserData);
 
             // Generate fundraiser URL
             const fundraiserUrl = window.location.origin + '/fundraiser.html?id=' + finalSlug;
+            console.log('Fundraiser URL generated:', fundraiserUrl);
 
             // Update success message with fundraiser link
             const successMessage = document.getElementById('success-message');
+            console.log('Updating success message...');
             successMessage.innerHTML = `
                 <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">🎉 Your Fundraiser is Live!</h3>
                 <p style="font-size: 1.8rem; margin-bottom: 2.4rem;">
@@ -433,15 +447,19 @@
             `;
 
             // Hide form and show success message
+            console.log('Hiding form and showing success message...');
             document.getElementById('fundraiser-form').style.display = 'none';
             successMessage.style.display = 'block';
+            console.log('Success message displayed!');
 
             // Scroll to success message
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             // Log for debugging (in production, this would send to server)
-            console.log('Fundraiser created:', fundraiserData);
+            console.log('✅ Fundraiser created successfully!');
+            console.log('Fundraiser data:', fundraiserData);
             console.log('Fundraiser URL:', fundraiserUrl);
+            console.log('You can now visit:', fundraiserUrl);
         });
     </script>
 </body>
