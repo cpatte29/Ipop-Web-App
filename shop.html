@@ -111,8 +111,21 @@
         </div>
     </header>
 
+    <!-- Fundraiser Attribution Banner (hidden by default, shown when supporting a fundraiser) -->
+    <div id="fundraiser-banner" style="display: none; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 1.6rem 0; margin-top: 80px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1.6rem; flex-wrap: wrap; text-align: center;">
+                <div style="font-size: 2.4rem;">🎯</div>
+                <div>
+                    <div style="font-size: 1.8rem; font-weight: 700;" id="fundraiser-org-name">Supporting...</div>
+                    <div style="font-size: 1.4rem; opacity: 0.9;">50% of your purchase supports this fundraiser!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" style="margin-top: 0;">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
@@ -545,5 +558,34 @@
 
     <script src="navigation.js"></script>
     <script src="cart.js"></script>
+    <script src="fundraiser.js"></script>
+    <script>
+        // Check for fundraiser attribution and show banner if present
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get fundraiser slug from URL or cart.js
+            const urlParams = new URLSearchParams(window.location.search);
+            const fundraiserSlug = urlParams.get('fundraiser');
+
+            if (fundraiserSlug && window.fundraiserUtils) {
+                // Load fundraiser data
+                const fundraiser = window.fundraiserUtils.loadFundraiserData(fundraiserSlug);
+
+                if (fundraiser) {
+                    // Show banner with organization name
+                    const banner = document.getElementById('fundraiser-banner');
+                    const orgNameEl = document.getElementById('fundraiser-org-name');
+
+                    orgNameEl.textContent = `Supporting ${fundraiser.orgName}`;
+                    banner.style.display = 'block';
+
+                    // Adjust hero section margin since banner is now visible
+                    const heroSection = document.querySelector('.hero-section');
+                    if (heroSection) {
+                        heroSection.style.marginTop = '0';
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

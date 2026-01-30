@@ -40,11 +40,22 @@ function calculateProgress(fundraiser) {
     };
 }
 
+// Calculate days remaining until end date
+function getDaysRemaining(endDate) {
+    if (!endDate) return null;
+    const end = new Date(endDate);
+    const now = new Date();
+    const diff = end - now;
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    return days > 0 ? days : 0;
+}
+
 // Render fundraiser page
 function renderFundraiserPage(fundraiser) {
     const container = document.getElementById('fundraiser-content');
     const progress = calculateProgress(fundraiser);
     const shareUrl = window.location.href;
+    const daysRemaining = getDaysRemaining(fundraiser.endDate);
 
     // Update page title
     document.getElementById('page-title').textContent = `Support ${fundraiser.orgName} | iPOP Gourmet Popcorn`;
@@ -54,10 +65,23 @@ function renderFundraiserPage(fundraiser) {
         <section class="fundraiser-hero">
             <div class="container">
                 <div class="fundraiser-content">
+                    ${fundraiser.image ? `
+                        <div style="margin-bottom: 2rem;">
+                            <img src="${fundraiser.image}" alt="${fundraiser.orgName}"
+                                 style="max-width: 300px; max-height: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                        </div>
+                    ` : ''}
                     <div class="org-badge">${fundraiser.orgType}</div>
                     <h1 class="fundraiser-title">${fundraiser.orgName}</h1>
                     ${fundraiser.description ? `
                         <p class="fundraiser-description">${fundraiser.description}</p>
+                    ` : ''}
+                    ${daysRemaining !== null ? `
+                        <div style="margin-top: 2rem; font-size: 1.8rem;">
+                            <span style="background: rgba(255,255,255,0.2); padding: 1rem 2rem; border-radius: 100px;">
+                                ⏰ ${daysRemaining} ${daysRemaining === 1 ? 'day' : 'days'} remaining
+                            </span>
+                        </div>
                     ` : ''}
                 </div>
             </div>
@@ -76,6 +100,12 @@ function renderFundraiserPage(fundraiser) {
                             <div class="stat-value">$${fundraiser.goal.toLocaleString()}</div>
                             <div class="stat-label">Goal</div>
                         </div>
+                        ${daysRemaining !== null ? `
+                            <div class="stat">
+                                <div class="stat-value">${daysRemaining}</div>
+                                <div class="stat-label">${daysRemaining === 1 ? 'Day Left' : 'Days Left'}</div>
+                            </div>
+                        ` : ''}
                     </div>
 
                     <div class="progress-bar-container">
@@ -87,6 +117,16 @@ function renderFundraiserPage(fundraiser) {
                     <p class="progress-text">
                         ${progress.supporters} supporters have contributed so far
                     </p>
+                    ${fundraiser.endDate ? `
+                        <p class="progress-text" style="margin-top: 1rem;">
+                            Fundraiser ends on ${new Date(fundraiser.endDate).toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
+                        </p>
+                    ` : ''}
                 </div>
             </div>
         </section>
