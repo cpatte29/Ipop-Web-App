@@ -247,19 +247,25 @@ function saveFundraiser(fundraiserData) {
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     const slug = getFundraiserSlug();
+    console.log('Fundraiser slug from URL:', slug);
 
     if (!slug) {
+        console.error('No fundraiser ID found in URL');
         renderErrorState();
         return;
     }
 
     const fundraiser = loadFundraiserData(slug);
+    console.log('Loaded fundraiser data:', fundraiser);
 
     if (!fundraiser) {
+        console.error('Fundraiser not found in localStorage for slug:', slug);
+        console.log('Available fundraisers:', JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]'));
         renderErrorState();
         return;
     }
 
+    console.log('Rendering fundraiser page for:', fundraiser.orgName);
     renderFundraiserPage(fundraiser);
 });
 
