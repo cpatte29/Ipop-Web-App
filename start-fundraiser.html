@@ -477,8 +477,11 @@
             window.fundraiserUtils.saveFundraiser(fundraiserData);
             console.log('Fundraiser data saved:', fundraiserData);
 
-            // Generate fundraiser URL
-            const fundraiserUrl = window.location.origin + '/fundraiser.html?id=' + finalSlug;
+            // Generate fundraiser URL using relative path (works with GitHub Pages)
+            // This creates a URL relative to the current page, avoiding hardcoded repo names
+            const fundraiserUrlObj = new URL('fundraiser.html', window.location.href);
+            fundraiserUrlObj.searchParams.set('id', finalSlug);
+            const fundraiserUrl = fundraiserUrlObj.toString();
             console.log('Fundraiser URL generated:', fundraiserUrl);
 
             // Update success message with fundraiser link
