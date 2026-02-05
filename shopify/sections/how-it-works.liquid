@@ -1,0 +1,162 @@
+<section class="ipop-how-it-works">
+  <div class="ipop-container">
+    {%- if section.settings.title or section.settings.subtitle -%}
+      <div class="ipop-section-header">
+        {%- if section.settings.title -%}
+          <h2 class="ipop-section-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle -%}
+          <p class="ipop-section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ipop-steps-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <article class="ipop-step-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.step_number -%}
+              <div class="ipop-step-number">{{ block.settings.step_number }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.icon_image -%}
+              <div class="ipop-step-icon">
+                <img
+                  src="{{ block.settings.icon_image | image_url: width: 120 }}"
+                  alt="{{ block.settings.icon_image.alt | escape }}"
+                  width="{{ block.settings.icon_image.width }}"
+                  height="{{ block.settings.icon_image.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {%- elsif block.settings.icon_emoji -%}
+              <div class="ipop-step-icon ipop-step-emoji">{{ block.settings.icon_emoji }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.title -%}
+              <h3 class="ipop-step-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description -%}
+              <p class="ipop-step-description">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.cta_text and section.settings.cta_url -%}
+      <div class="ipop-section-cta">
+        <a href="{{ section.settings.cta_url }}" class="ipop-btn ipop-btn-primary ipop-btn-lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "section-how-it-works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Three simple steps to fundraising success"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Get Started Now"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "default": "1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image (optional)",
+          "info": "Recommended size: 120x120px"
+        },
+        {
+          "type": "text",
+          "id": "icon_emoji",
+          "label": "Icon Emoji (if no image)",
+          "default": "📝",
+          "info": "Used if no image is uploaded"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Sign Up Online"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Fill out our quick form in just 5 minutes. No paperwork, no hassle."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "icon_emoji": "📝",
+            "title": "Sign Up Online",
+            "description": "Fill out our quick form in just 5 minutes. No paperwork, no hassle."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "icon_emoji": "📱",
+            "title": "Share Your Link",
+            "description": "Get a custom fundraiser page to share with family, friends, and supporters."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "icon_emoji": "💰",
+            "title": "Earn 50% Profit",
+            "description": "Watch the orders come in and earn 50% profit automatically on every sale!"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

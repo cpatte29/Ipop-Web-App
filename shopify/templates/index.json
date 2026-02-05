@@ -1,0 +1,291 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "50%",
+            "label": "Profit on Every Sale"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "$0",
+            "label": "Upfront Costs"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "5 min",
+            "label": "To Get Started"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3"
+      ],
+      "settings": {
+        "subtitle": "Welcome to iPOP",
+        "title": "Fundraising Made Delicious",
+        "description": "<p>Join thousands of organizations raising funds with delicious gourmet popcorn. <strong>50% profit. Zero upfront costs. 100% online.</strong></p>",
+        "cta_url": "/pages/start-fundraiser",
+        "cta_text": "Start a Fundraiser"
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "icon_emoji": "📝",
+            "title": "Sign Up Online",
+            "description": "Fill out our quick form in just 5 minutes. No paperwork, no hassle."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "icon_emoji": "📱",
+            "title": "Share Your Link",
+            "description": "Get a custom fundraiser page to share with family, friends, and supporters."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "icon_emoji": "💰",
+            "title": "Earn 50% Profit",
+            "description": "Watch the orders come in and earn 50% profit automatically on every sale!"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "title": "How It Works",
+        "subtitle": "Three simple steps to fundraising success",
+        "cta_url": "/pages/start-fundraiser",
+        "cta_text": "Get Started Now"
+      }
+    },
+    "value_props": {
+      "type": "value-props",
+      "blocks": {
+        "value_1": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "💰",
+            "title": "50% Profit",
+            "description": "Earn half of every sale automatically. No hidden fees or confusing pricing."
+          }
+        },
+        "value_2": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📦",
+            "title": "Zero Upfront Costs",
+            "description": "No inventory to buy or money to collect. We handle everything online."
+          }
+        },
+        "value_3": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "🚀",
+            "title": "Quick Setup",
+            "description": "Get started in 5 minutes. Receive your custom fundraiser page instantly."
+          }
+        },
+        "value_4": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "🍿",
+            "title": "Premium Popcorn",
+            "description": "Gourmet flavors made with the finest ingredients. Your supporters will love it!"
+          }
+        },
+        "value_5": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📱",
+            "title": "100% Online",
+            "description": "Share your link via email, social media, or text. Orders come straight to us."
+          }
+        },
+        "value_6": {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📊",
+            "title": "Track Progress",
+            "description": "Monitor your fundraiser in real-time with live stats and updates."
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3",
+        "value_4",
+        "value_5",
+        "value_6"
+      ],
+      "settings": {
+        "title": "Why Choose iPOP?",
+        "subtitle": "Everything you need for a successful fundraiser"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "iPOP made our fundraiser so easy! We raised $5,000 in just two weeks without any upfront costs.",
+            "author_name": "Sarah Johnson",
+            "author_title": "Team Mom",
+            "organization": "Lincoln Middle School Soccer"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "The popcorn quality is amazing and our supporters loved it. Best fundraiser we've ever done!",
+            "author_name": "Michael Chen",
+            "author_title": "Band Director",
+            "organization": "Germantown High School"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "100% online made it perfect for our busy families. No paperwork, no money collection. Just share and earn!",
+            "author_name": "Jennifer Davis",
+            "author_title": "PTA President",
+            "organization": "Oak Grove Elementary"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "title": "What Our Fundraisers Say",
+        "subtitle": "Join thousands of successful organizations"
+      }
+    },
+    "partnerships": {
+      "type": "partnerships-strip",
+      "blocks": {
+        "partner_1": {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Lincoln Middle School"
+          }
+        },
+        "partner_2": {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Germantown High School"
+          }
+        },
+        "partner_3": {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Oak Grove Elementary"
+          }
+        },
+        "partner_4": {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Youth Sports League"
+          }
+        },
+        "partner_5": {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Community Church"
+          }
+        }
+      },
+      "block_order": [
+        "partner_1",
+        "partner_2",
+        "partner_3",
+        "partner_4",
+        "partner_5"
+      ],
+      "settings": {
+        "title": "Trusted by Organizations Nationwide",
+        "subtitle": "Schools, teams, and nonprofits love fundraising with iPOP",
+        "description": "",
+        "cta_url": "",
+        "cta_text": "See All Partners"
+      }
+    },
+    "final_cta": {
+      "type": "final-cta",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "No upfront costs"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "50% profit on every sale"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "Setup in 5 minutes"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "settings": {
+        "subtitle": "Ready to Get Started?",
+        "title": "Start Your Fundraiser Today",
+        "description": "<p>Join thousands of organizations raising funds with delicious gourmet popcorn. Zero upfront costs, 50% profit, and setup takes just 5 minutes.</p>",
+        "primary_cta_url": "/pages/start-fundraiser",
+        "primary_cta_text": "Start a Fundraiser",
+        "secondary_cta_url": "/collections/all",
+        "secondary_cta_text": "Shop Popcorn"
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "how_it_works",
+    "value_props",
+    "testimonials",
+    "partnerships",
+    "final_cta"
+  ]
+}

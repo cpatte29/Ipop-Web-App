@@ -1,0 +1,153 @@
+<section class="ipop-value-props">
+  <div class="ipop-container">
+    {%- if section.settings.title or section.settings.subtitle -%}
+      <div class="ipop-section-header">
+        {%- if section.settings.title -%}
+          <h2 class="ipop-section-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle -%}
+          <p class="ipop-section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ipop-value-props-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'value_prop' -%}
+          <div class="ipop-value-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon_image -%}
+              <div class="ipop-value-icon">
+                <img
+                  src="{{ block.settings.icon_image | image_url: width: 80 }}"
+                  alt="{{ block.settings.icon_image.alt | escape }}"
+                  width="{{ block.settings.icon_image.width }}"
+                  height="{{ block.settings.icon_image.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {%- elsif block.settings.icon_emoji -%}
+              <div class="ipop-value-icon ipop-value-emoji">{{ block.settings.icon_emoji }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.title -%}
+              <h3 class="ipop-value-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description -%}
+              <p class="ipop-value-description">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value Props",
+  "tag": "section",
+  "class": "section-value-props",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Choose iPOP?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Everything you need for a successful fundraiser"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_prop",
+      "name": "Value Proposition",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image (optional)",
+          "info": "Recommended size: 80x80px"
+        },
+        {
+          "type": "text",
+          "id": "icon_emoji",
+          "label": "Icon Emoji (if no image)",
+          "default": "✨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "50% Profit"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Earn half of every sale automatically. No hidden fees or confusing pricing."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Props",
+      "blocks": [
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "💰",
+            "title": "50% Profit",
+            "description": "Earn half of every sale automatically. No hidden fees or confusing pricing."
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📦",
+            "title": "Zero Upfront Costs",
+            "description": "No inventory to buy or money to collect. We handle everything online."
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "🚀",
+            "title": "Quick Setup",
+            "description": "Get started in 5 minutes. Receive your custom fundraiser page instantly."
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "🍿",
+            "title": "Premium Popcorn",
+            "description": "Gourmet flavors made with the finest ingredients. Your supporters will love it!"
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📱",
+            "title": "100% Online",
+            "description": "Share your link via email, social media, or text. Orders come straight to us."
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon_emoji": "📊",
+            "title": "Track Progress",
+            "description": "Monitor your fundraiser in real-time with live stats and updates."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
