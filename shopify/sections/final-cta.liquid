@@ -1,0 +1,170 @@
+<section class="ipop-final-cta">
+  <div class="ipop-container">
+    <div class="ipop-cta-grid">
+      <div class="ipop-cta-content">
+        {%- if section.settings.subtitle -%}
+          <p class="ipop-cta-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.title -%}
+          <h2 class="ipop-cta-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.description -%}
+          <div class="ipop-cta-description">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+
+        <div class="ipop-cta-buttons">
+          {%- if section.settings.primary_cta_text and section.settings.primary_cta_url -%}
+            <a href="{{ section.settings.primary_cta_url }}" class="ipop-btn ipop-btn-primary ipop-btn-lg">
+              {{ section.settings.primary_cta_text }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.secondary_cta_text and section.settings.secondary_cta_url -%}
+            <a href="{{ section.settings.secondary_cta_url }}" class="ipop-btn ipop-btn-secondary ipop-btn-lg">
+              {{ section.settings.secondary_cta_text }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="ipop-cta-features">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <div class="ipop-cta-feature" {{ block.shopify_attributes }}>
+                  {%- if block.settings.icon -%}
+                    <span class="ipop-cta-icon">{{ block.settings.icon }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.text -%}
+                    <span>{{ block.settings.text }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="ipop-cta-visual">
+        {%- if section.settings.visual_image -%}
+          <img
+            src="{{ section.settings.visual_image | image_url: width: 600 }}"
+            alt="{{ section.settings.visual_image.alt | escape }}"
+            width="{{ section.settings.visual_image.width }}"
+            height="{{ section.settings.visual_image.height }}"
+            loading="lazy"
+            class="ipop-cta-image"
+          >
+        {%- else -%}
+          <div class="ipop-cta-placeholder">🎯</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Final CTA",
+  "tag": "section",
+  "class": "section-final-cta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ready to Get Started?"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Start Your Fundraiser Today"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Join thousands of organizations raising funds with delicious gourmet popcorn. Zero upfront costs, 50% profit, and setup takes just 5 minutes.</p>"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary Button Text",
+      "default": "Start a Fundraiser"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary Button URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary Button Text",
+      "default": "Shop Popcorn"
+    },
+    {
+      "type": "image_picker",
+      "id": "visual_image",
+      "label": "Visual Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature Text",
+          "default": "No upfront costs"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Final CTA",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "No upfront costs"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "50% profit on every sale"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "✓",
+            "text": "Setup in 5 minutes"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

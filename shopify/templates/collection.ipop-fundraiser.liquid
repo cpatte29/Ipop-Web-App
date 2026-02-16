@@ -1,0 +1,98 @@
+{% comment %}
+  Template: collection.ipop-fundraiser.liquid
+  Purpose: Collection template with fundraiser attribution banner
+  Usage: Assign to your main product collection or use as default
+{% endcomment %}
+
+<!-- Fundraiser Attribution Banner -->
+<div id="fundraiser-banner" style="display: none; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 1.6rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <div class="page-width">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 1.6rem; flex-wrap: wrap; text-align: center;">
+      <div style="font-size: 2.4rem;">🎯</div>
+      <div>
+        <div style="font-size: 1.8rem; font-weight: 700;" id="fundraiser-org-name">Supporting...</div>
+        <div style="font-size: 1.4rem; opacity: 0.9;">50% of your purchase supports this fundraiser!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Collection Header -->
+<div class="page-width section-template--{{ template.name }}">
+  <header class="section-header text-center" style="padding: 4rem 0 2rem;">
+    <h1 class="section-header__title" style="font-size: 4rem; font-weight: 700; margin-bottom: 1rem;">
+      {{ collection.title }}
+    </h1>
+    {%- if collection.description != blank -%}
+      <div class="rte section-header__description" style="font-size: 1.8rem; color: #666; max-width: 700px; margin: 0 auto;">
+        {{ collection.description }}
+      </div>
+    {%- endif -%}
+  </header>
+
+  <!-- Products Grid -->
+  <div class="collection" style="padding: 2rem 0 4rem;">
+    {%- if collection.products.size > 0 -%}
+      <div class="grid grid--uniform" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 3.2rem;">
+        {%- for product in collection.products -%}
+          <div class="grid__item">
+            {% render 'product-card-ipop', product: product %}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div class="pagination-wrapper" style="margin-top: 4rem;">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="collection--empty" style="text-align: center; padding: 4rem 2rem;">
+        <p style="font-size: 1.8rem; color: #666;">No products in this collection yet.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+// Check for fundraiser attribution and show banner
+document.addEventListener('DOMContentLoaded', function() {
+  // Get fundraiser slug from URL or sessionStorage
+  const urlParams = new URLSearchParams(window.location.search);
+  const fundraiserSlug = urlParams.get('fundraiser') || sessionStorage.getItem('current_fundraiser');
+
+  if (fundraiserSlug) {
+    // Store in sessionStorage for persistence across page navigation
+    sessionStorage.setItem('current_fundraiser', fundraiserSlug);
+
+    // Load fundraiser data from localStorage
+    const fundraisers = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+    const fundraiser = fundraisers.find(f => f.slug === fundraiserSlug);
+
+    if (fundraiser) {
+      // Show banner with organization name
+      const banner = document.getElementById('fundraiser-banner');
+      const orgNameEl = document.getElementById('fundraiser-org-name');
+
+      orgNameEl.textContent = `Supporting ${fundraiser.orgName}`;
+      banner.style.display = 'block';
+
+      // Add fundraiser parameter to all product links
+      document.querySelectorAll('a[href*="/products/"]').forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('fundraiser', fundraiserSlug);
+        link.href = url.toString();
+      });
+    }
+  }
+});
+</script>
+
+<style>
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important; }
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr !important; }
+}
+</style>

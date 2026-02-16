@@ -1,0 +1,166 @@
+<section class="ipop-testimonials">
+  <div class="ipop-container">
+    {%- if section.settings.title or section.settings.subtitle -%}
+      <div class="ipop-section-header">
+        {%- if section.settings.title -%}
+          <h2 class="ipop-section-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle -%}
+          <p class="ipop-section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ipop-testimonials-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <article class="ipop-testimonial-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.show_stars -%}
+              <div class="ipop-testimonial-stars">
+                <span class="ipop-star">⭐</span>
+                <span class="ipop-star">⭐</span>
+                <span class="ipop-star">⭐</span>
+                <span class="ipop-star">⭐</span>
+                <span class="ipop-star">⭐</span>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.quote -%}
+              <blockquote class="ipop-testimonial-quote">
+                "{{ block.settings.quote }}"
+              </blockquote>
+            {%- endif -%}
+
+            <div class="ipop-testimonial-author">
+              {%- if block.settings.author_image -%}
+                <img
+                  src="{{ block.settings.author_image | image_url: width: 60 }}"
+                  alt="{{ block.settings.author_image.alt | escape }}"
+                  width="60"
+                  height="60"
+                  loading="lazy"
+                  class="ipop-author-image"
+                >
+              {%- endif -%}
+
+              <div class="ipop-author-info">
+                {%- if block.settings.author_name -%}
+                  <div class="ipop-author-name">{{ block.settings.author_name }}</div>
+                {%- endif -%}
+                {%- if block.settings.author_title -%}
+                  <div class="ipop-author-title">{{ block.settings.author_title }}</div>
+                {%- endif -%}
+                {%- if block.settings.organization -%}
+                  <div class="ipop-author-org">{{ block.settings.organization }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section-testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Fundraisers Say"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Join thousands of successful organizations"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_stars",
+          "label": "Show 5-Star Rating",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Testimonial Quote",
+          "default": "iPOP made our fundraiser so easy! We raised $5,000 in just two weeks without any upfront costs."
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Photo (optional)",
+          "info": "Recommended size: 60x60px"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Sarah Johnson"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author Title",
+          "default": "Team Mom"
+        },
+        {
+          "type": "text",
+          "id": "organization",
+          "label": "Organization",
+          "default": "Lincoln Middle School Soccer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "iPOP made our fundraiser so easy! We raised $5,000 in just two weeks without any upfront costs.",
+            "author_name": "Sarah Johnson",
+            "author_title": "Team Mom",
+            "organization": "Lincoln Middle School Soccer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "The popcorn quality is amazing and our supporters loved it. Best fundraiser we've ever done!",
+            "author_name": "Michael Chen",
+            "author_title": "Band Director",
+            "organization": "Germantown High School"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "show_stars": true,
+            "quote": "100% online made it perfect for our busy families. No paperwork, no money collection. Just share and earn!",
+            "author_name": "Jennifer Davis",
+            "author_title": "PTA President",
+            "organization": "Oak Grove Elementary"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
