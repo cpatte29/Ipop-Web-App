@@ -1,0 +1,369 @@
+{% comment %}
+  Template: page.start-fundraiser.liquid
+  Purpose: Custom page for fundraiser sign-up form
+  Usage: Assign this template to your "Start a Fundraiser" page in Shopify admin
+{% endcomment %}
+
+{{ 'custom-home.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width">
+  <div class="ipop-container" style="padding: 4rem 0;">
+    <!-- Hero Section -->
+    <section style="background: linear-gradient(135deg, #E63946 0%, #c62e39 100%); color: white; padding: 6rem 0; border-radius: 16px; margin-bottom: 4rem;">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+        <h1 style="font-size: 4.8rem; font-weight: 700; margin-bottom: 2rem;">Start Your Fundraiser Today!</h1>
+        <p style="font-size: 2rem; margin-bottom: 3rem; opacity: 0.95;">
+          Join thousands of organizations raising funds with delicious gourmet popcorn.
+          <strong style="color: #FFED00;">50% profit. Zero upfront costs. 100% online.</strong>
+        </p>
+
+        <div style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <div style="font-size: 4rem; font-weight: 700; color: #FFED00; margin-bottom: 0.5rem;">50%</div>
+            <div style="font-size: 1.4rem;">Profit on Every Sale</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 4rem; font-weight: 700; color: #FFED00; margin-bottom: 0.5rem;">$0</div>
+            <div style="font-size: 1.4rem;">Upfront Costs</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 4rem; font-weight: 700; color: #FFED00; margin-bottom: 0.5rem;">5 min</div>
+            <div style="font-size: 1.4rem;">To Get Started</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form-section" style="max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-size: 3.2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Ready to Get Started?</h2>
+        <p style="font-size: 1.6rem; color: #666;">Fill out the form below and we'll set up your fundraiser page right away!</p>
+      </div>
+
+      <form id="fundraiser-form" style="background: #F5F5F5; padding: 3rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <!-- Organization Name -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="org-name" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Organization Name <span style="color: #E63946;">*</span>
+          </label>
+          <input
+            type="text"
+            id="org-name"
+            name="org-name"
+            required
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+            placeholder="e.g., Lincoln High School Soccer Team"
+          >
+        </div>
+
+        <!-- Organization Type -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="org-type" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Organization Type <span style="color: #E63946;">*</span>
+          </label>
+          <select
+            id="org-type"
+            name="org-type"
+            required
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+          >
+            <option value="">Select your organization type...</option>
+            <option value="school">School</option>
+            <option value="sports">Sports Team</option>
+            <option value="church">Church/Religious Group</option>
+            <option value="nonprofit">Non-Profit Organization</option>
+            <option value="youth">Youth Group</option>
+            <option value="club">Club/Association</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Contact Person -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="contact-name" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Contact Person <span style="color: #E63946;">*</span>
+          </label>
+          <input
+            type="text"
+            id="contact-name"
+            name="contact-name"
+            required
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+            placeholder="Your full name"
+          >
+        </div>
+
+        <!-- Email and Phone -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-bottom: 2.4rem;">
+          <div>
+            <label for="email" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+              Email <span style="color: #E63946;">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+              placeholder="your@email.com"
+            >
+          </div>
+          <div>
+            <label for="phone" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+              Phone <span style="color: #E63946;">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+              placeholder="(555) 123-4567"
+            >
+          </div>
+        </div>
+
+        <!-- Fundraising Goal -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="goal" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Fundraising Goal <span style="color: #E63946;">*</span>
+          </label>
+          <select
+            id="goal"
+            name="goal"
+            required
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+          >
+            <option value="">How much do you hope to raise?</option>
+            <option value="500">$500 - $1,000</option>
+            <option value="1000">$1,000 - $2,500</option>
+            <option value="2500">$2,500 - $5,000</option>
+            <option value="5000">$5,000 - $10,000</option>
+            <option value="10000">$10,000+</option>
+          </select>
+        </div>
+
+        <!-- Number of Participants -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="participants" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Number of Participants
+          </label>
+          <input
+            type="number"
+            id="participants"
+            name="participants"
+            min="1"
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+            placeholder="How many people will be selling?"
+          >
+        </div>
+
+        <!-- Description -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="message" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Tell Us About Your Fundraiser (Optional)
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white; resize: vertical;"
+            placeholder="What are you raising money for?"
+          ></textarea>
+        </div>
+
+        <!-- End Date -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="end-date" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Fundraiser End Date <span style="color: #E63946;">*</span>
+          </label>
+          <input
+            type="date"
+            id="end-date"
+            name="end-date"
+            required
+            min=""
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+          >
+          <p style="font-size: 1.2rem; color: #666; margin-top: 0.5rem;">When should this fundraiser end?</p>
+        </div>
+
+        <!-- Image Upload -->
+        <div style="margin-bottom: 2.4rem;">
+          <label for="org-image" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+            Organization Photo/Logo (Optional)
+          </label>
+          <input
+            type="file"
+            id="org-image"
+            name="org-image"
+            accept="image/*"
+            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
+          >
+          <p style="font-size: 1.2rem; color: #666; margin-top: 0.5rem;">Upload a team photo or logo</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          style="width: 100%; padding: 1.6rem; font-size: 1.6rem; font-weight: 700; background: #E63946; color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+          onmouseover="this.style.background='#c62e39'"
+          onmouseout="this.style.background='#E63946'"
+        >
+          Start My Fundraiser
+        </button>
+
+        <p style="margin-top: 1.6rem; text-align: center; font-size: 1.2rem; color: #666;">
+          By submitting, you agree to our terms of service and privacy policy.
+        </p>
+      </form>
+    </section>
+
+    <!-- Success Section (hidden by default) -->
+    <section id="success-section" style="display: none; max-width: 800px; margin: 0 auto;">
+      <div id="success-message" style="background: #4CAF50; color: white; padding: 3rem; border-radius: 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <!-- Populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- What Happens Next Section -->
+    <section id="what-happens-next" style="margin-top: 6rem;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-size: 3.2rem; font-weight: 700; color: #2D2D2D;">What Happens Next?</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.4rem; max-width: 1000px; margin: 0 auto;">
+        <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">1</div>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">We Contact You</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Our team will reach out within 24 hours to confirm details and answer questions.</p>
+        </div>
+
+        <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">2</div>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Get Your Custom Page</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">We'll create your personalized fundraiser page with a unique sharing link.</p>
+        </div>
+
+        <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">3</div>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Start Selling & Earning</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Share your link and watch orders come in. You earn 50% profit automatically!</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+// Set minimum date to today
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('end-date').setAttribute('min', today);
+
+// Shopify-compatible fundraiser form submission
+document.getElementById('fundraiser-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Collect form data
+  const formData = {
+    orgName: document.getElementById('org-name').value,
+    orgType: document.getElementById('org-type').value,
+    orgTypeLabel: document.getElementById('org-type').selectedOptions[0].text,
+    contactName: document.getElementById('contact-name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    goal: parseInt(document.getElementById('goal').value),
+    participants: document.getElementById('participants').value || 0,
+    message: document.getElementById('message').value,
+    endDate: document.getElementById('end-date').value,
+    createdAt: new Date().toISOString(),
+    status: 'active'
+  };
+
+  // Handle image upload
+  const imageFile = document.getElementById('org-image').files[0];
+  if (imageFile) {
+    try {
+      formData.image = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(imageFile);
+      });
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Error processing image. Please try a smaller file.');
+      return;
+    }
+  }
+
+  // Generate unique slug
+  const slug = formData.orgName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .substring(0, 50);
+
+  // Check for existing slug
+  const existing = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+  const existingSlug = existing.find(f => f.slug === slug);
+  const finalSlug = existingSlug ? slug + '-' + Date.now() : slug;
+
+  formData.slug = finalSlug;
+  formData.description = formData.message || `Help ${formData.orgName} reach their fundraising goal!`;
+
+  // Save to localStorage
+  existing.push(formData);
+  localStorage.setItem('ipop_fundraisers', JSON.stringify(existing));
+
+  // Generate fundraiser URL (Shopify-compatible)
+  const fundraiserUrlObj = new URL('{{ pages.fundraiser.url }}', window.location.origin);
+  fundraiserUrlObj.searchParams.set('id', finalSlug);
+  const fundraiserUrl = fundraiserUrlObj.toString();
+
+  // Show success message
+  document.getElementById('success-message').innerHTML = `
+    <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">🎉 Your Fundraiser is Live!</h3>
+    <p style="font-size: 1.8rem; margin-bottom: 2.4rem;">
+      Great news, ${formData.contactName}! Your fundraiser for <strong>${formData.orgName}</strong> is now active.
+    </p>
+    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 8px; margin-bottom: 2.4rem;">
+      <p style="font-size: 1.4rem; margin-bottom: 1rem; opacity: 0.9;">Your Unique Fundraiser Link:</p>
+      <input
+        type="text"
+        value="${fundraiserUrl}"
+        readonly
+        onclick="this.select()"
+        style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: none; border-radius: 4px; background: white; color: #333; text-align: center; font-weight: 600; cursor: pointer;"
+      >
+    </div>
+    <div style="display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.4rem;">
+      <a href="${fundraiserUrl}" style="background: white; color: #E63946; font-size: 1.6rem; padding: 1.4rem 2.8rem; text-decoration: none; border-radius: 8px; font-weight: 700;">
+        View Your Page
+      </a>
+      <button onclick="window.location.reload()" style="background: rgba(255,255,255,0.2); color: white; font-size: 1.6rem; padding: 1.4rem 2.8rem; border: 2px solid white; border-radius: 8px; font-weight: 700; cursor: pointer;">
+        Create Another
+      </button>
+    </div>
+    <p style="font-size: 1.6rem; line-height: 1.6;">
+      Share your fundraiser link with friends, family, and supporters.
+      Every purchase contributes <strong>50% profit</strong> toward your goal!
+    </p>
+  `;
+
+  // Hide form, show success
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('what-happens-next').style.display = 'none';
+  document.getElementById('success-section').style.display = 'block';
+  document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+</script>
+
+<style>
+@media (max-width: 768px) {
+  h1 { font-size: 3.2rem !important; }
+  h2 { font-size: 2.4rem !important; }
+  [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+}
+</style>

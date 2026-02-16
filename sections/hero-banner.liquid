@@ -1,0 +1,156 @@
+{{ 'custom-home.css' | asset_url | stylesheet_tag }}
+
+<section class="ipop-hero-banner">
+  <div class="ipop-container">
+    <div class="ipop-hero-grid">
+      <div class="ipop-hero-content">
+        {%- if section.settings.subtitle -%}
+          <p class="ipop-hero-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.title -%}
+          <h1 class="ipop-hero-title">{{ section.settings.title }}</h1>
+        {%- endif -%}
+
+        {%- if section.settings.description -%}
+          <div class="ipop-hero-description">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+
+        <div class="ipop-hero-stats">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'stat' -%}
+              <div class="ipop-stat-item" {{ block.shopify_attributes }}>
+                <div class="ipop-stat-value">{{ block.settings.value }}</div>
+                <div class="ipop-stat-label">{{ block.settings.label }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.cta_text and section.settings.cta_url -%}
+          <div class="ipop-hero-cta">
+            <a href="{{ section.settings.cta_url }}" class="ipop-btn ipop-btn-primary ipop-btn-lg">
+              {{ section.settings.cta_text }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="ipop-hero-visual">
+        {%- if section.settings.hero_image -%}
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 600 }}"
+            alt="{{ section.settings.hero_image.alt | escape }}"
+            width="{{ section.settings.hero_image.width }}"
+            height="{{ section.settings.hero_image.height }}"
+            loading="eager"
+            class="ipop-hero-image"
+          >
+        {%- else -%}
+          <div class="ipop-hero-placeholder">🍿</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="ipop-floating-elements">
+    <div class="ipop-floating-element ipop-element-1"></div>
+    <div class="ipop-floating-element ipop-element-2"></div>
+    <div class="ipop-floating-element ipop-element-3"></div>
+    <div class="ipop-floating-element ipop-element-4"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Welcome to iPOP"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Fundraising Made Delicious"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Join thousands of organizations raising funds with delicious gourmet popcorn. <strong>50% profit. Zero upfront costs. 100% online.</strong></p>"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Start a Fundraiser"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Stat Value",
+          "default": "50%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Stat Label",
+          "default": "Profit on Every Sale"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "50%",
+            "label": "Profit on Every Sale"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "$0",
+            "label": "Upfront Costs"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "5 min",
+            "label": "To Get Started"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

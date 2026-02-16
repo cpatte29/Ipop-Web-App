@@ -1,0 +1,160 @@
+<section class="ipop-partnerships-strip">
+  <div class="ipop-container">
+    {%- if section.settings.title -%}
+      <h2 class="ipop-partnerships-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle -%}
+      <p class="ipop-partnerships-subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ipop-partnerships-logos">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'logo' -%}
+            <div class="ipop-partnership-logo" {{ block.shopify_attributes }}>
+              {%- if block.settings.logo_image -%}
+                {%- if block.settings.logo_url != blank -%}
+                  <a href="{{ block.settings.logo_url }}" target="_blank" rel="noopener">
+                    <img
+                      src="{{ block.settings.logo_image | image_url: width: 200 }}"
+                      alt="{{ block.settings.logo_image.alt | default: block.settings.logo_name | escape }}"
+                      width="{{ block.settings.logo_image.width }}"
+                      height="{{ block.settings.logo_image.height }}"
+                      loading="lazy"
+                    >
+                  </a>
+                {%- else -%}
+                  <img
+                    src="{{ block.settings.logo_image | image_url: width: 200 }}"
+                    alt="{{ block.settings.logo_image.alt | default: block.settings.logo_name | escape }}"
+                    width="{{ block.settings.logo_image.width }}"
+                    height="{{ block.settings.logo_image.height }}"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              {%- elsif block.settings.logo_name -%}
+                <div class="ipop-logo-placeholder">{{ block.settings.logo_name }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.description -%}
+      <div class="ipop-partnerships-description">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.cta_text and section.settings.cta_url -%}
+      <div class="ipop-partnerships-cta">
+        <a href="{{ section.settings.cta_url }}" class="ipop-btn ipop-btn-secondary">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Partnerships Strip",
+  "tag": "section",
+  "class": "section-partnerships",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Trusted by Organizations Nationwide"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Schools, teams, and nonprofits love fundraising with iPOP"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description (optional)",
+      "info": "Additional text below logos"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL (optional)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "See All Partners"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Partner Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Image",
+          "info": "Recommended: transparent PNG, 200px wide"
+        },
+        {
+          "type": "text",
+          "id": "logo_name",
+          "label": "Partner Name",
+          "info": "Used as alt text and fallback if no image"
+        },
+        {
+          "type": "url",
+          "id": "logo_url",
+          "label": "Partner URL (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partnerships Strip",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Lincoln Middle School"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Germantown High"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Oak Grove Elementary"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Youth Sports League"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Community Church"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
