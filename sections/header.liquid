@@ -1,0 +1,79 @@
+{% comment %}
+  Section: Header
+  Main site navigation
+{% endcomment %}
+
+<header class="site-header" style="background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000;">
+  <div class="page-width">
+    <nav class="main-nav" style="display: flex; align-items: center; justify-content: space-between; padding: 1.6rem 0;">
+      <!-- Logo -->
+      <a href="/" class="logo" style="text-decoration: none;">
+        {%- if section.settings.logo -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="{{ shop.name }}"
+            width="200"
+            height="auto"
+            loading="eager"
+          >
+        {%- else -%}
+          <span style="font-size: 2.4rem; font-weight: 700; color: #E63946;">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      <!-- Main Navigation -->
+      <ul class="nav-menu" style="display: flex; gap: 2.4rem; list-style: none; margin: 0; padding: 0;">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <a href="{{ link.url }}" style="color: #2D2D2D; text-decoration: none; font-size: 1.6rem; font-weight: 600;">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <!-- Cart Icon -->
+      <div style="display: flex; align-items: center; gap: 1.6rem;">
+        <a href="/cart" style="position: relative; color: #2D2D2D; text-decoration: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span data-cart-count style="display: none; position: absolute; top: -8px; right: -8px; background: #E63946; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">
+            {{ cart.item_count }}
+          </span>
+        </a>
+
+        <a href="/pages/start-fundraiser" class="btn-primary" style="background: #E63946; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.4rem;">
+          Start a Fundraiser
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @media (max-width: 768px) {
+    .nav-menu { display: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
