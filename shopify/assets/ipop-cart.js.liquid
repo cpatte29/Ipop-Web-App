@@ -1,0 +1,329 @@
+/**
+ * iPOP Shopify Cart Integration
+ * Handles cart operations with fundraiser attribution tracking
+ * Uses Shopify Ajax Cart API
+ */
+
+(function() {
+  'use strict';
+
+  // Get fundraiser attribution from URL or session
+  function getFundraiserAttribution() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const fundraiserSlug = urlParams.get('fundraiser');
+
+    if (fundraiserSlug) {
+      sessionStorage.setItem('ipop_current_fundraiser', fundraiserSlug);
+      return fundraiserSlug;
+    }
+
+    return sessionStorage.getItem('ipop_current_fundraiser') || null;
+  }
+
+  // Clear fundraiser attribution
+  function clearFundraiserAttribution() {
+    sessionStorage.removeItem('ipop_current_fundraiser');
+  }
+
+  // Add item to Shopify cart with fundraiser attribution
+  function addToCart(variantId, quantity = 1, properties = {}) {
+    const fundraiser = getFundraiserAttribution();
+
+    // Add fundraiser attribution to line item properties
+    if (fundraiser) {
+      properties['_fundraiser'] = fundraiser;
+
+      // Load fundraiser data for display
+      const fundraisers = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+      const fundraiserData = fundraisers.find(f => f.slug === fundraiser);
+      if (fundraiserData) {
+        properties['_fundraiser_name'] = fundraiserData.orgName;
+      }
+    }
+
+    // Use Shopify Ajax Cart API
+    return fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: quantity,
+        properties: properties
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Item added to cart:', data);
+      updateCartCount();
+      showAddedToCartMessage(data);
+      return data;
+    })
+    .catch(error => {
+      console.error('Error adding to cart:', error);
+      alert('Sorry, there was an error adding this item to your cart.');
+      throw error;
+    });
+  }
+
+  // Update cart count in header
+  function updateCartCount() {
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const totalItems = cart.item_count;
+
+        // Update cart count badge
+        const cartCountElements = document.querySelectorAll('[data-cart-count]');
+        cartCountElements.forEach(el => {
+          el.textContent = totalItems;
+          el.style.display = totalItems > 0 ? 'inline' : 'none';
+        });
+
+        // Update cart icon badge (Dawn theme compatibility)
+        const cartBubble = document.querySelector('.cart-count-bubble');
+        if (cartBubble) {
+          cartBubble.textContent = totalItems;
+          if (totalItems > 0) {
+            cartBubble.classList.remove('hidden');
+          } else {
+            cartBubble.classList.add('hidden');
+          }
+        }
+      })
+      .catch(error => console.error('Error updating cart count:', error));
+  }
+
+  // Show "Added to Cart" notification
+  function showAddedToCartMessage(item) {
+    // Remove existing message if any
+    const existingMessage = document.querySelector('.ipop-cart-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    // Create message element
+    const message = document.createElement('div');
+    message.className = 'ipop-cart-message';
+    message.innerHTML = `
+      <div class="ipop-cart-message-content">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        <span><strong>${item.product_title}</strong> added to cart!</span>
+      </div>
+    `;
+
+    // Add styles
+    message.style.cssText = `
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: #32CD32;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      animation: slideInRight 0.3s ease-out;
+    `;
+
+    document.body.appendChild(message);
+
+    // Remove message after 3 seconds
+    setTimeout(() => {
+      message.style.animation = 'slideOutRight 0.3s ease-out';
+      setTimeout(() => {
+        message.remove();
+      }, 300);
+    }, 3000);
+  }
+
+  // Change line item quantity
+  function updateQuantity(lineItemKey, quantity) {
+    return fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: lineItemKey,
+        quantity: quantity
+      })
+    })
+    .then(response => response.json())
+    .then(cart => {
+      console.log('Cart updated:', cart);
+      updateCartCount();
+      return cart;
+    })
+    .catch(error => {
+      console.error('Error updating cart:', error);
+      throw error;
+    });
+  }
+
+  // Get current cart
+  function getCart() {
+    return fetch('/cart.js')
+      .then(response => response.json())
+      .catch(error => {
+        console.error('Error fetching cart:', error);
+        throw error;
+      });
+  }
+
+  // Clear entire cart
+  function clearCart() {
+    return fetch('/cart/clear.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(cart => {
+      console.log('Cart cleared:', cart);
+      clearFundraiserAttribution();
+      updateCartCount();
+      return cart;
+    })
+    .catch(error => {
+      console.error('Error clearing cart:', error);
+      throw error;
+    });
+  }
+
+  // Add fundraiser note to cart
+  function addFundraiserNoteToCart() {
+    const fundraiser = getFundraiserAttribution();
+    if (!fundraiser) return Promise.resolve();
+
+    const fundraisers = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+    const fundraiserData = fundraisers.find(f => f.slug === fundraiser);
+
+    if (!fundraiserData) return Promise.resolve();
+
+    const note = `Supporting: ${fundraiserData.orgName} (${fundraiser})`;
+
+    return fetch('/cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        note: note
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.error('Error adding note to cart:', error));
+  }
+
+  // Initialize event listeners
+  function init() {
+    // Update cart count on page load
+    updateCartCount();
+
+    // Add fundraiser note to cart if attribution exists
+    addFundraiserNoteToCart();
+
+    // Handle "Add to Cart" button clicks
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('product-card__add-to-cart') ||
+          e.target.closest('.product-card__add-to-cart')) {
+
+        e.preventDefault();
+        const button = e.target.classList.contains('product-card__add-to-cart')
+          ? e.target
+          : e.target.closest('.product-card__add-to-cart');
+
+        const variantId = button.dataset.variantId;
+        const fundraiser = button.dataset.fundraiser;
+
+        if (variantId) {
+          // Disable button temporarily
+          button.disabled = true;
+          button.textContent = 'Adding...';
+
+          addToCart(variantId, 1)
+            .then(() => {
+              button.textContent = 'Added!';
+              setTimeout(() => {
+                button.disabled = false;
+                button.textContent = 'Add to Cart';
+              }, 2000);
+            })
+            .catch(() => {
+              button.disabled = false;
+              button.textContent = 'Add to Cart';
+            });
+        }
+      }
+    });
+  }
+
+  // CSS Animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideInRight {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutRight {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+
+    .ipop-cart-message-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ipop-cart-message-content svg {
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .ipop-cart-message {
+        right: 10px !important;
+        left: 10px !important;
+        top: 80px !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Export functions for use in theme
+  window.iPOPCart = {
+    addToCart,
+    updateQuantity,
+    getCart,
+    clearCart,
+    getFundraiserAttribution,
+    updateCartCount
+  };
+
+})();

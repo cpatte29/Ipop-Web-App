@@ -1,22 +1,62 @@
-# iPOP Shopify Dawn Theme - Custom Homepage Sections
+# iPOP Shopify Integration
 
-This directory contains all the files needed to convert your iPOP fundraising homepage into a Shopify Dawn theme with customizable sections.
+Complete Shopify integration for your fundraising website, including homepage sections, custom page templates, and cart integration with fundraiser attribution tracking.
 
 ## 📁 File Structure
 
 ```
 shopify/
-├── sections/
+├── sections/                      # Homepage sections (editable in customizer)
 │   ├── hero-banner.liquid          # Hero section with stats
 │   ├── how-it-works.liquid         # 3-step process section
 │   ├── value-props.liquid          # Value propositions grid (3-6 cards)
 │   ├── testimonials.liquid         # Customer testimonials
 │   ├── partnerships-strip.liquid   # Partner logos strip
 │   └── final-cta.liquid           # Final call-to-action section
-├── assets/
-│   └── custom-home.css.liquid     # All custom styles for sections
-└── templates/
-    └── index.json                  # Homepage template configuration
+│
+├── templates/                     # Custom page templates
+│   ├── index.json                  # Homepage layout
+│   ├── page.start-fundraiser.liquid   # Fundraiser signup form
+│   ├── page.fundraiser.liquid     # Individual fundraiser display
+│   └── collection.ipop-fundraiser.liquid  # Products with attribution
+│
+├── snippets/                      # Reusable components
+│   └── product-card-ipop.liquid    # Product card with add-to-cart
+│
+├── assets/                        # CSS and JavaScript
+│   ├── custom-home.css.liquid      # All custom styles
+│   └── ipop-cart.js.liquid        # Cart integration + attribution tracking
+│
+└── Documentation/
+    ├── SHOPIFY_INTEGRATION_GUIDE.md  # Complete setup guide
+    └── QUICK_REFERENCE.md            # Fast reference cheat sheet
+```
+
+## 🎯 What's Included
+
+### **Homepage Sections** (6 sections)
+- Fully editable via Shopify theme customizer
+- Mobile responsive
+- No frameworks required
+
+### **Fundraiser Flow** (Complete demo system)
+- Start fundraiser form
+- Individual fundraiser pages
+- Progress tracking
+- Share functionality
+- Product catalog with attribution
+
+### **Cart Integration**
+- Shopify Ajax Cart API
+- Fundraiser attribution tracking
+- Line item properties
+- Order notes with fundraiser info
+
+### **Professional Design**
+- Brand colors and typography
+- Hover effects and animations
+- Mobile-first responsive layout
+- Professional shadows and spacing
 ```
 
 ## 🚀 Installation Instructions
