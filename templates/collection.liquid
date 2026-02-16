@@ -1,0 +1,306 @@
+{% comment %}
+  Template: collection.liquid
+  Purpose: Display product collection with fundraiser attribution support
+  Usage: Used for product collection pages (especially /collections/all)
+  URL: /collections/all?fundraiser=slug-name
+{% endcomment %}
+
+{{ 'custom-home.css' | asset_url | stylesheet_tag }}
+
+<!-- Fundraiser Attribution Banner -->
+<div id="fundraiser-banner" style="display: none;">
+  <div style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 1.6rem 2rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+      <span style="font-size: 2.4rem;">🎉</span>
+      <span style="font-size: 1.6rem; font-weight: 600;">
+        You're supporting <strong id="fundraiser-name">a fundraiser</strong>!
+      </span>
+      <span style="font-size: 1.4rem; opacity: 0.95;">
+        50% of your purchase goes directly to their cause
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(135deg, #FFD60A 0%, #FFC300 100%); padding: 6rem 0; text-align: center; margin-top: 2rem;">
+  <div class="page-width">
+    <h1 style="font-size: 5.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.6rem; line-height: 1.2;">
+      🍿 Gourmet Popcorn That Pops!
+    </h1>
+    <p style="font-size: 2rem; color: #2D2D2D; max-width: 700px; margin: 0 auto; opacity: 0.9;">
+      Hand-crafted in small batches with premium ingredients. Choose from 12 delicious flavors!
+    </p>
+  </div>
+</section>
+
+<!-- Products Grid -->
+<section style="padding: 6rem 0; background: white;">
+  <div class="page-width">
+    <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 3.2rem;">
+
+      {%- if collection.products.size > 0 -%}
+        {%- for product in collection.products -%}
+          <div class="product-card" style="background: #F5F5F5; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+            <div class="product-image" style="aspect-ratio: 1; overflow: hidden; background: white;">
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy"
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                >
+              {%- else -%}
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #E0E0E0;">
+                  <span style="font-size: 6rem;">🍿</span>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="product-info" style="padding: 2.4rem;">
+              <h3 style="font-size: 2.4rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">
+                {{ product.title }}
+              </h3>
+
+              {%- if product.description != blank -%}
+                <p style="font-size: 1.4rem; color: #666; line-height: 1.6; margin-bottom: 2rem;">
+                  {{ product.description | strip_html | truncate: 100 }}
+                </p>
+              {%- endif -%}
+
+              <div class="product-sizes" style="display: flex; gap: 1.2rem; margin-top: 2rem;">
+                {%- if product.variants.size > 1 -%}
+                  {%- for variant in product.variants limit: 2 -%}
+                    <button
+                      class="size-btn"
+                      onclick="window.iPOPCart.addToCart({{ product.id }}, {{ variant.id }}, '{{ product.title | escape }}', '{{ variant.title | escape }}', {{ variant.price }})"
+                      style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+                      onmouseover="this.style.background='#E63946'; this.style.color='white';"
+                      onmouseout="this.style.background='white'; this.style.color='#E63946';"
+                    >
+                      <div>{{ variant.title }}</div>
+                      <div style="font-size: 1.8rem; margin-top: 0.4rem;">{{ variant.price | money }}</div>
+                    </button>
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- assign variant = product.variants.first -%}
+                  <button
+                    class="size-btn"
+                    onclick="window.iPOPCart.addToCart({{ product.id }}, {{ variant.id }}, '{{ product.title | escape }}', 'Standard', {{ variant.price }})"
+                    style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+                    onmouseover="this.style.background='#E63946'; this.style.color='white';"
+                    onmouseout="this.style.background='white'; this.style.color='#E63946';"
+                  >
+                    <div>Standard</div>
+                    <div style="font-size: 1.8rem; margin-top: 0.4rem;">{{ variant.price | money }}</div>
+                  </button>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback products if no Shopify products exist yet -->
+        <div class="product-card" style="background: #F5F5F5; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <div class="product-image" style="aspect-ratio: 1; background: white; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 6rem;">🍿</span>
+          </div>
+          <div class="product-info" style="padding: 2.4rem;">
+            <h3 style="font-size: 2.4rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Kettle Corn</h3>
+            <p style="font-size: 1.4rem; color: #666; line-height: 1.6; margin-bottom: 2rem;">
+              The perfect balance of sweet and salty. Our classic recipe that started it all.
+            </p>
+            <div class="product-sizes" style="display: flex; gap: 1.2rem; margin-top: 2rem;">
+              <button class="size-btn" style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer;">
+                <div>Snack Size</div>
+                <div style="font-size: 1.8rem; margin-top: 0.4rem;">$10</div>
+              </button>
+              <button class="size-btn" style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer;">
+                <div>Value Size</div>
+                <div style="font-size: 1.8rem; margin-top: 0.4rem;">$15</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<!-- 10 Flavor Sampler Box -->
+<section style="padding: 6rem 0; background: #F5F5F5;">
+  <div class="page-width">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: 4rem; font-weight: 700; color: #2D2D2D; margin-bottom: 2rem;">
+        🎁 10 Flavor Sampler Box
+      </h2>
+      <p style="font-size: 1.8rem; color: #666; line-height: 1.6; margin-bottom: 3.2rem;">
+        Can't decide? Try them all! Our sampler box includes 10 of our most popular flavors in snack-sized portions.
+      </p>
+
+      <div style="background: white; border-radius: 16px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 3.2rem;">
+        <div style="font-size: 2.4rem; font-weight: 700; color: #E63946; margin-bottom: 1.6rem;">
+          $85 <span style="font-size: 1.6rem; color: #666; text-decoration: line-through;">$100</span>
+        </div>
+        <p style="font-size: 1.4rem; color: #666; margin-bottom: 2.4rem;">
+          Includes: Kettle Corn, Caramel Apple, Buffalo Ranch, Birthday Cake, White Cheddar, Caramel Cheddar, Milk Chocolate Drizzle, Rainbow, Cheddar Cheese, and Pineapple
+        </p>
+        <button
+          onclick="alert('Sampler box added to cart!')"
+          style="padding: 1.6rem 4rem; font-size: 1.8rem; font-weight: 700; background: #E63946; color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+          onmouseover="this.style.background='#c62e39';"
+          onmouseout="this.style.background='#E63946';"
+        >
+          Add Sampler Box to Cart
+        </button>
+      </div>
+
+      <p style="font-size: 1.4rem; color: #999;">
+        Perfect for events, parties, or trying before committing to full-size bags!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Why iPOP Section -->
+<section style="padding: 6rem 0; background: white;">
+  <div class="page-width">
+    <h2 style="font-size: 4rem; font-weight: 700; text-align: center; color: #2D2D2D; margin-bottom: 4rem;">
+      Why Choose iPOP?
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3.2rem; max-width: 1000px; margin: 0 auto;">
+      <div style="text-align: center;">
+        <div style="font-size: 5rem; margin-bottom: 1.6rem;">🌽</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Premium Ingredients</h3>
+        <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">
+          Made with non-GMO kernels and real butter for authentic flavor
+        </p>
+      </div>
+
+      <div style="text-align: center;">
+        <div style="font-size: 5rem; margin-bottom: 1.6rem;">👨‍🍳</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Small Batch Crafted</h3>
+        <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">
+          Every bag is made fresh in small batches for maximum flavor
+        </p>
+      </div>
+
+      <div style="text-align: center;">
+        <div style="font-size: 5rem; margin-bottom: 1.6rem;">📦</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Fast Shipping</h3>
+        <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">
+          Fresh popcorn delivered to your door in 3-5 business days
+        </p>
+      </div>
+
+      <div style="text-align: center;">
+        <div style="font-size: 5rem; margin-bottom: 1.6rem;">❤️</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Support Communities</h3>
+        <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">
+          Every purchase through a fundraiser helps local organizations thrive
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Support a Fundraiser CTA -->
+<section style="padding: 8rem 0; background: linear-gradient(135deg, #E63946 0%, #c62e39 100%); color: white; text-align: center;">
+  <div class="page-width">
+    <h2 style="font-size: 4rem; font-weight: 700; margin-bottom: 2rem;">
+      Know a Group That Needs Funding?
+    </h2>
+    <p style="font-size: 2rem; line-height: 1.6; max-width: 700px; margin: 0 auto 3.2rem; opacity: 0.95;">
+      Help your favorite organization raise money by starting a fundraiser. It's free, easy, and they keep 50% of every sale!
+    </p>
+    <a
+      href="{{ pages['start-fundraiser'].url }}"
+      style="display: inline-block; background: white; color: #E63946; font-size: 2rem; font-weight: 700; padding: 2rem 4rem; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"
+      onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(0,0,0,0.3)';"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';"
+    >
+      Start a Fundraiser
+    </a>
+  </div>
+</section>
+
+<style>
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-section h1 {
+    font-size: 3.6rem !important;
+  }
+
+  .hero-section p {
+    font-size: 1.6rem !important;
+  }
+}
+</style>
+
+<script>
+// Check for fundraiser attribution
+(function() {
+  'use strict';
+
+  // Get fundraiser from URL or sessionStorage
+  function getFundraiser() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const fundraiserParam = urlParams.get('fundraiser') || urlParams.get('id');
+
+    if (fundraiserParam) {
+      sessionStorage.setItem('current_fundraiser', fundraiserParam);
+      return fundraiserParam;
+    }
+
+    return sessionStorage.getItem('current_fundraiser');
+  }
+
+  // Load fundraiser data
+  function loadFundraiserData(slug) {
+    try {
+      const fundraisers = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
+      return fundraisers.find(f => f.slug === slug);
+    } catch (e) {
+      console.error('Error loading fundraiser data:', e);
+      return null;
+    }
+  }
+
+  // Show fundraiser banner
+  function showFundraiserBanner(fundraiserSlug) {
+    const banner = document.getElementById('fundraiser-banner');
+    const nameElement = document.getElementById('fundraiser-name');
+
+    if (!banner || !nameElement) return;
+
+    const fundraiser = loadFundraiserData(fundraiserSlug);
+
+    if (fundraiser) {
+      nameElement.textContent = fundraiser.orgName;
+    } else {
+      nameElement.textContent = 'a fundraiser';
+    }
+
+    banner.style.display = 'block';
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const fundraiserSlug = getFundraiser();
+
+    if (fundraiserSlug) {
+      showFundraiserBanner(fundraiserSlug);
+    }
+  });
+})();
+</script>
