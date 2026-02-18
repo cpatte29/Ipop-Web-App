@@ -1,0 +1,76 @@
+{% comment %}
+  Template: page.liquid
+  Default page template — displays page title and content
+{% endcomment %}
+
+<div class="page-width" style="max-width: 900px; margin: 0 auto; padding: 6rem 2rem;">
+  <article>
+    <header style="text-align: center; margin-bottom: 4rem;">
+      <h1 style="font-size: 4rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.6rem;">
+        {{ page.title }}
+      </h1>
+
+      {%- if page.metafields.custom.subtitle != blank -%}
+        <p style="font-size: 1.8rem; color: #666;">
+          {{ page.metafields.custom.subtitle }}
+        </p>
+      {%- endif -%}
+    </header>
+
+    <div class="page-content" style="font-size: 1.6rem; line-height: 1.8; color: #2D2D2D;">
+      {{ page.content }}
+    </div>
+  </article>
+</div>
+
+<style>
+.page-content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin: 3.2rem 0 1.6rem;
+}
+
+.page-content h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2D2D2D;
+  margin: 2.4rem 0 1.2rem;
+}
+
+.page-content p {
+  margin-bottom: 1.6rem;
+}
+
+.page-content ul,
+.page-content ol {
+  margin-bottom: 1.6rem;
+  padding-left: 2.4rem;
+}
+
+.page-content li {
+  margin-bottom: 0.8rem;
+}
+
+.page-content a {
+  color: #E63946;
+  text-decoration: underline;
+}
+
+.page-content a:hover {
+  color: #c62e39;
+}
+
+.page-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2.4rem 0;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 3.2rem !important; }
+  .page-content h2 { font-size: 2.4rem; }
+  .page-content h3 { font-size: 2rem; }
+}
+</style>
