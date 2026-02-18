@@ -245,6 +245,7 @@
         "partner_4",
         "partner_5"
       ],
+      "disabled": true,
       "settings": {
         "title": "Trusted by Organizations Nationwide",
         "subtitle": "Schools, teams, and nonprofits love fundraising with iPOP",
