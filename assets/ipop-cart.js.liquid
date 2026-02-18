@@ -103,6 +103,9 @@
       existingMessage.remove();
     }
 
+    // Get product title (handle different response formats)
+    const productTitle = item.product_title || item.title || 'Item';
+
     // Create message element
     const message = document.createElement('div');
     message.className = 'ipop-cart-message';
@@ -112,7 +115,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M9 12l2 2 4-4"></path>
         </svg>
-        <span><strong>${item.product_title}</strong> added to cart!</span>
+        <span><strong>${productTitle}</strong> added to cart!</span>
       </div>
     `;
 
