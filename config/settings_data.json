@@ -23,14 +23,13 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo": "shopify://shop_images/Ipop_logo-01.png",
-          "menu": "main-menu"
+          "logo": "shopify://shop_images/Ipop_logo-01.png"
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
-          "footer_text": "Gourmet Popcorn Fundraising Made Easy",
+          "footer_logo": "shopify://shop_images/Ipop_logo-01.png",
           "contact_phone": "(901) 239-4767",
           "contact_email": "contact@ipopgourmet.com",
           "address": "1605 N Germantown Pkwy Ste 112\nCordova, TN 38018"
