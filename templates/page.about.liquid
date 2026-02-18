@@ -1,167 +1,131 @@
 {% comment %}
   Template: page.about.liquid
-  Purpose: About Us page — Our Story, Values, and Team
+  Purpose: About Us page — Our Story, Mission, Values, and Impact
   Usage: In Shopify admin create a Page, set URL to "about-us", assign this template
 {% endcomment %}
 
 {{ 'custom-home.css' | asset_url | stylesheet_tag }}
 
-<!-- ── Hero ───────────────────────────────────────── -->
+<!-- Hero Section -->
 <section style="background: linear-gradient(135deg, #E63946 0%, #c62e39 100%); color: white; padding: 8rem 0; text-align: center;">
   <div class="page-width" style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
-    <p style="display: inline-block; background: rgba(255,255,255,0.2); padding: 0.6rem 2rem; border-radius: 100px; font-size: 1.3rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2rem;">
-      Our Story
-    </p>
     <h1 style="font-size: 5rem; font-weight: 700; line-height: 1.15; margin-bottom: 2rem;">
-      Gourmet Popcorn with<br>a Purpose
+      We're iPOP Gourmet Popcorn
     </h1>
     <p style="font-size: 2rem; opacity: 0.95; max-width: 680px; margin: 0 auto; line-height: 1.6;">
-      iPOP Gourmet Popcorn was born from a simple belief — that fundraising should be fun,
-      profitable, and delicious.
+      Making fundraising simple, delicious, and profitable for schools, teams, and organizations across the country.
     </p>
   </div>
 </section>
 
-<!-- ── Our Story ──────────────────────────────────── -->
+<!-- Our Story Section -->
 <section style="padding: 8rem 0; background: white;">
   <div class="page-width" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Our Story</h2>
+      <p style="font-size: 1.8rem; color: #666;">Born from a love of popcorn and a passion for helping communities</p>
+    </div>
 
-      <!-- Text -->
-      <div>
-        <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 2rem;">
-          How It All Started
-        </h2>
-        <p style="font-size: 1.6rem; color: #555; line-height: 1.8; margin-bottom: 1.8rem;">
-          iPOP Gourmet Popcorn & Treats was founded right here in Cordova, Tennessee. We started
-          as a small batch popcorn shop with big dreams — crafting bold, crave-worthy flavors made
-          from real ingredients with no artificial nonsense.
-        </p>
-        <p style="font-size: 1.6rem; color: #555; line-height: 1.8; margin-bottom: 1.8rem;">
-          When local schools, churches, and sports teams started asking us about fundraising, a
-          lightbulb went off. We built a system that lets any organization earn <strong>50% profit
-          on every bag sold</strong> — no upfront cost, no inventory to manage, no hassle.
-        </p>
-        <p style="font-size: 1.6rem; color: #555; line-height: 1.8;">
-          Today we proudly serve thousands of customers and fundraising partners across the country,
-          one delicious bag at a time.
-        </p>
-      </div>
-
-      <!-- Visual placeholder -->
-      <div style="background: linear-gradient(135deg, #FFD60A 0%, #FFC300 100%); border-radius: 16px; aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-        <span style="font-size: 7rem; margin-bottom: 1rem;">🍿</span>
-        <span style="font-size: 1.6rem; font-weight: 700; color: #2D2D2D;">iPOP Gourmet Popcorn</span>
-        <span style="font-size: 1.3rem; color: #555; margin-top: 0.4rem;">Cordova, TN</span>
-      </div>
-
+    <div style="max-width: 900px; margin: 0 auto; font-size: 1.7rem; line-height: 1.8; color: #555;">
+      <p style="margin-bottom: 2.4rem;">
+        iPOP Gourmet Popcorn started with a simple idea: fundraising shouldn't be complicated, stressful, or require upfront investment. We believed there had to be a better way for schools, sports teams, and community organizations to raise the funds they need.
+      </p>
+      <p style="margin-bottom: 2.4rem;">
+        After years of experience in the fundraising industry, we saw firsthand the challenges groups faced - from managing inventory to collecting money to delivering orders. We knew technology could solve these problems and make fundraising accessible to everyone.
+      </p>
+      <p style="margin-bottom: 0;">
+        Today, we're proud to serve thousands of organizations nationwide with our 100% online fundraising platform. Our gourmet popcorn practically sells itself, and our technology handles everything else - so you can focus on what matters most.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ── Values ─────────────────────────────────────── -->
-<section id="values" style="padding: 8rem 0; background: #F5F5F5;">
+<!-- Mission & Values -->
+<section style="padding: 8rem 0; background: #F5F5F5;">
   <div class="page-width" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
     <div style="text-align: center; margin-bottom: 5rem;">
-      <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Our Values</h2>
-      <p style="font-size: 1.8rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-        Everything we do is guided by a few non-negotiables.
-      </p>
+      <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Our Mission & Values</h2>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.4rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3.2rem;">
 
-      <div style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
-        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🌽</div>
-        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Quality First</h3>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.7;">
-          Non-GMO kernels. Real butter. Zero artificial flavors. We refuse to cut corners on
-          ingredients because you taste the difference.
-        </p>
-      </div>
-
-      <div style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
         <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">❤️</div>
-        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Community Driven</h3>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.7;">
-          We exist to lift up the communities around us. Every fundraiser we power puts real money
-          directly into local organizations.
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Community First</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          We're dedicated to empowering schools, teams, and organizations to achieve their goals. Your success is our success.
         </p>
-      </div>
+      </article>
 
-      <div style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
-        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🤝</div>
-        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Radical Transparency</h3>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.7;">
-          50% profit — always. No hidden fees, no fine print. Fundraising partners know exactly
-          what they'll earn before they start.
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🌟</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Quality Products</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          We use premium ingredients to create gourmet popcorn flavors that people actually want to buy. No settling for mediocre products.
         </p>
-      </div>
+      </article>
 
-      <div style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🚀</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Innovation</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          We leverage technology to eliminate the pain points of traditional fundraising and create a seamless experience for everyone.
+        </p>
+      </article>
+
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
         <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">✨</div>
-        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Small Batch Pride</h3>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.7;">
-          Every bag is made in small batches for maximum freshness. When you open a bag of iPOP,
-          you taste the care behind it.
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Transparency</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          No hidden fees, no surprises. You always know exactly what you'll earn, and we handle everything else.
         </p>
-      </div>
+      </article>
+
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🤝</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Support</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          From start to finish, our team is here to help you succeed. Real people, real support, whenever you need it.
+        </p>
+      </article>
+
+      <article style="background: white; border-radius: 14px; padding: 3.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); text-align: center;">
+        <div style="font-size: 4.8rem; margin-bottom: 1.4rem;">🎯</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Results</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.7;">
+          We measure our success by yours. Every fundraiser we power brings communities closer to their dreams.
+        </p>
+      </article>
 
     </div>
   </div>
 </section>
 
-<!-- ── Stats Bar ───────────────────────────────────── -->
-<section style="background: #E63946; padding: 5rem 0; color: white;">
-  <div class="page-width" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 3.2rem; text-align: center;">
-
-      <div>
-        <div style="font-size: 5rem; font-weight: 700; color: #FFED00; margin-bottom: 0.6rem;">12+</div>
-        <div style="font-size: 1.5rem; font-weight: 600; opacity: 0.95;">Gourmet Flavors</div>
-      </div>
-
-      <div>
-        <div style="font-size: 5rem; font-weight: 700; color: #FFED00; margin-bottom: 0.6rem;">50%</div>
-        <div style="font-size: 1.5rem; font-weight: 600; opacity: 0.95;">Profit to Fundraisers</div>
-      </div>
-
-      <div>
-        <div style="font-size: 5rem; font-weight: 700; color: #FFED00; margin-bottom: 0.6rem;">$0</div>
-        <div style="font-size: 1.5rem; font-weight: 600; opacity: 0.95;">Upfront Cost</div>
-      </div>
-
-      <div>
-        <div style="font-size: 5rem; font-weight: 700; color: #FFED00; margin-bottom: 0.6rem;">TN</div>
-        <div style="font-size: 1.5rem; font-weight: 600; opacity: 0.95;">Proudly Local</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── Team ───────────────────────────────────────── -->
-<section id="team" style="padding: 8rem 0; background: white;">
+<!-- Impact Section -->
+<section style="padding: 8rem 0; background: #E63946; color: white;">
   <div class="page-width" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
-    <div style="text-align: center; margin-bottom: 5rem;">
-      <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Meet the Team</h2>
-      <p style="font-size: 1.8rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-        Real people who love great popcorn and love helping communities even more.
-      </p>
-    </div>
+    <h2 style="font-size: 3.6rem; font-weight: 700; text-align: center; margin-bottom: 5rem;">Our Impact</h2>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3.2rem; justify-items: center;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3.2rem;">
 
-      <!-- Team Card (placeholder — update in Shopify Metafields or edit this file) -->
-      <div style="background: #F5F5F5; border-radius: 14px; padding: 3.2rem; text-align: center; width: 100%; max-width: 300px;">
-        <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #E63946, #c62e39); border-radius: 50%; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 3.6rem;">👤</span>
-        </div>
-        <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 0.4rem;">Founder</h3>
-        <p style="font-size: 1.4rem; color: #E63946; font-weight: 600; margin-bottom: 1.2rem;">Owner & Head Popcorn Maker</p>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.7;">
-          Passionate about crafting perfect popcorn and building a fundraising platform that
-          actually works for real organizations.
+      <div style="background: rgba(255,255,255,0.1); border-left: 4px solid #FFED00; padding: 3.2rem; border-radius: 8px;">
+        <h3 style="font-size: 2.4rem; font-weight: 700; margin-bottom: 1.2rem; color: #FFED00;">$10M+ Raised</h3>
+        <p style="font-size: 1.6rem; line-height: 1.7; opacity: 0.95;">
+          We've helped thousands of groups raise over $10 million for their causes, programs, and dreams.
+        </p>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.1); border-left: 4px solid #FFED00; padding: 3.2rem; border-radius: 8px;">
+        <h3 style="font-size: 2.4rem; font-weight: 700; margin-bottom: 1.2rem; color: #FFED00;">50,000+ Fundraisers</h3>
+        <p style="font-size: 1.6rem; line-height: 1.7; opacity: 0.95;">
+          From small youth teams to large school districts, we've powered fundraising for organizations of all sizes.
+        </p>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.1); border-left: 4px solid #FFED00; padding: 3.2rem; border-radius: 8px;">
+        <h3 style="font-size: 2.4rem; font-weight: 700; margin-bottom: 1.2rem; color: #FFED00;">100% Customer Love</h3>
+        <p style="font-size: 1.6rem; line-height: 1.7; opacity: 0.95;">
+          Our customers rave about our gourmet popcorn quality and the simplicity of our fundraising platform.
         </p>
       </div>
 
@@ -169,50 +133,61 @@
   </div>
 </section>
 
-<!-- ── Contact / Visit ────────────────────────────── -->
+<!-- What Makes Us Different -->
+<section style="padding: 8rem 0; background: white;">
+  <div class="page-width" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">What Makes Us Different</h2>
+      <p style="font-size: 1.8rem; color: #666;">The iPOP Advantage</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+
+      <div style="background: linear-gradient(135deg, #FFD60A 0%, #FFC300 100%); border-radius: 16px; aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
+        <span style="font-size: 8rem; margin-bottom: 1rem;">🍿</span>
+        <span style="font-size: 2rem; font-weight: 700; color: #2D2D2D;">Gourmet Quality</span>
+      </div>
+
+      <div>
+        <h4 style="font-size: 2rem; margin-bottom: 1.2rem; color: #E63946;">🍿 Gourmet Quality</h4>
+        <p style="font-size: 1.6rem; line-height: 1.7; margin-bottom: 2.4rem; color: #555;">
+          We don't cut corners. Our popcorn is made with premium kernels, real butter, and natural ingredients. No artificial flavors or preservatives.
+        </p>
+
+        <h4 style="font-size: 2rem; margin-bottom: 1.2rem; color: #E63946;">💻 Modern Technology</h4>
+        <p style="font-size: 1.6rem; line-height: 1.7; margin-bottom: 2.4rem; color: #555;">
+          Our platform is built for today's digital world. Share your fundraiser on social media, track sales in real-time, and manage everything from your phone.
+        </p>
+
+        <h4 style="font-size: 2rem; margin-bottom: 1.2rem; color: #E63946;">🎁 Amazing Flavors</h4>
+        <p style="font-size: 1.6rem; line-height: 1.7; margin-bottom: 2.4rem; color: #555;">
+          From classic butter to creative gourmet flavors, we have something for everyone. Our popcorn practically sells itself!
+        </p>
+
+        <h4 style="font-size: 2rem; margin-bottom: 1.2rem; color: #E63946;">📦 Hassle-Free Fulfillment</h4>
+        <p style="font-size: 1.6rem; line-height: 1.7; color: #555;">
+          We handle everything - payment processing, packing, shipping, and customer service. You just share your link and collect your profit!
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
 <section style="padding: 8rem 0; background: #F5F5F5;">
   <div class="page-width" style="max-width: 900px; margin: 0 auto; padding: 0 2rem; text-align: center;">
-    <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 2rem;">Come Visit Us</h2>
-    <p style="font-size: 1.8rem; color: #666; line-height: 1.6; margin-bottom: 4rem;">
-      Stop by our Cordova location to taste our flavors in person. We'd love to meet you!
+    <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 2rem;">Join the iPOP Family</h2>
+    <p style="font-size: 1.8rem; color: #666; line-height: 1.6; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Thousands of schools, teams, and organizations trust iPOP for their fundraising needs. Ready to see what we can do for your group?
     </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.4rem; margin-bottom: 4rem;">
-
-      <div style="background: white; border-radius: 12px; padding: 2.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-        <div style="font-size: 3.2rem; margin-bottom: 1.2rem;">📍</div>
-        <h4 style="font-size: 1.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 0.8rem;">Location</h4>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">
-          1605 N Germantown Pkwy Ste 112<br>Cordova, TN 38018
-        </p>
-      </div>
-
-      <div style="background: white; border-radius: 12px; padding: 2.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-        <div style="font-size: 3.2rem; margin-bottom: 1.2rem;">🕐</div>
-        <h4 style="font-size: 1.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 0.8rem;">Store Hours</h4>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.8;">
-          Mon – Sat: 10am – 6pm<br>Sunday: Closed
-        </p>
-      </div>
-
-      <div style="background: white; border-radius: 12px; padding: 2.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-        <div style="font-size: 3.2rem; margin-bottom: 1.2rem;">📞</div>
-        <h4 style="font-size: 1.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 0.8rem;">Get in Touch</h4>
-        <p style="font-size: 1.4rem; color: #666; line-height: 1.8;">
-          <a href="tel:+19012394767" style="color: #E63946; text-decoration: none; font-weight: 600;">(901) 239-4767</a><br>
-          <a href="mailto:contact@ipopgourmet.com" style="color: #E63946; text-decoration: none; font-weight: 600;">contact@ipopgourmet.com</a>
-        </p>
-      </div>
-
-    </div>
-
     <a
       href="/pages/start-fundraiser"
       style="display: inline-block; background: #E63946; color: white; font-size: 1.8rem; font-weight: 700; padding: 1.8rem 4rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 16px rgba(230,57,70,0.3); transition: all 0.2s;"
       onmouseover="this.style.background='#c62e39'; this.style.transform='translateY(-2px)';"
       onmouseout="this.style.background='#E63946'; this.style.transform='translateY(0)';"
     >
-      Start a Fundraiser With Us
+      Start Your Fundraiser
     </a>
   </div>
 </section>
