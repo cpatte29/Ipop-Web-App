@@ -13,8 +13,8 @@
       <div style="max-width: 900px; margin: 0 auto; text-align: center; padding: 0 2rem;">
         <h1 style="font-size: 4.8rem; font-weight: 700; margin-bottom: 2rem;">Start Your Fundraiser Today!</h1>
         <p style="font-size: 2rem; margin-bottom: 3rem; opacity: 0.95;">
-          Join thousands of organizations raising funds with delicious gourmet popcorn.
-          <strong style="color: #FFED00;">50% profit. Zero upfront costs. 100% online.</strong>
+          Join organizations raising funds with delicious gourmet popcorn.
+          <strong style="color: #FFED00;">50% profit. Zero upfront costs. Easy setup.</strong>
         </p>
 
         <div style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
@@ -189,19 +189,17 @@
           <p style="font-size: 1.2rem; color: #666; margin-top: 0.5rem;">When should this fundraiser end?</p>
         </div>
 
-        <!-- Image Upload -->
+        <!-- Image Upload Note -->
         <div style="margin-bottom: 2.4rem;">
-          <label for="org-image" style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
+          <label style="display: block; font-size: 1.4rem; font-weight: 600; color: #2D2D2D; margin-bottom: 0.8rem;">
             Organization Photo/Logo (Optional)
           </label>
-          <input
-            type="file"
-            id="org-image"
-            name="org-image"
-            accept="image/*"
-            style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 2px solid #CCC; border-radius: 8px; background: white;"
-          >
-          <p style="font-size: 1.2rem; color: #666; margin-top: 0.5rem;">Upload a team photo or logo</p>
+          <div style="background: #FFF9E6; border: 2px solid #FFD60A; border-radius: 8px; padding: 1.6rem;">
+            <p style="font-size: 1.4rem; color: #2D2D2D; margin: 0; line-height: 1.6;">
+              📸 <strong>Have a team photo or logo?</strong><br>
+              Please attach it when you send the email submission. We'll add it to your fundraiser page!
+            </p>
+          </div>
         </div>
 
         <!-- Submit Button -->
@@ -236,20 +234,20 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.4rem; max-width: 1000px; margin: 0 auto;">
         <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
           <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">1</div>
-          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">We Contact You</h3>
-          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Our team will reach out within 24 hours to confirm details and answer questions.</p>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Submit Your Request</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Fill out the form and send us your fundraiser details via email.</p>
         </div>
 
         <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
           <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">2</div>
-          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Get Your Custom Page</h3>
-          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">We'll create your personalized fundraiser page with a unique sharing link.</p>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">We Build Your Page</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Within 24 hours, we'll create your custom fundraiser page and email you the link.</p>
         </div>
 
         <div style="background: #F5F5F5; padding: 2.4rem; border-radius: 12px; text-align: center;">
           <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #E63946, #c62e39); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 1.6rem;">3</div>
-          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Start Selling & Earning</h3>
-          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Share your link and watch orders come in. You earn 50% profit automatically!</p>
+          <h3 style="font-size: 1.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">Share & Earn</h3>
+          <p style="font-size: 1.4rem; color: #666; line-height: 1.6;">Share your unique link with supporters and earn 50% profit on every sale!</p>
         </div>
       </div>
     </section>
@@ -261,95 +259,78 @@
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('end-date').setAttribute('min', today);
 
-// Shopify-compatible fundraiser form submission
-document.getElementById('fundraiser-form').addEventListener('submit', async function(e) {
+// Quick MVP: Email-based fundraiser form submission
+document.getElementById('fundraiser-form').addEventListener('submit', function(e) {
   e.preventDefault();
 
   // Collect form data
-  const formData = {
-    orgName: document.getElementById('org-name').value,
-    orgType: document.getElementById('org-type').value,
-    orgTypeLabel: document.getElementById('org-type').selectedOptions[0].text,
-    contactName: document.getElementById('contact-name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    goal: parseInt(document.getElementById('goal').value),
-    participants: document.getElementById('participants').value || 0,
-    message: document.getElementById('message').value,
-    endDate: document.getElementById('end-date').value,
-    createdAt: new Date().toISOString(),
-    status: 'active'
-  };
+  const orgName = document.getElementById('org-name').value;
+  const orgType = document.getElementById('org-type').selectedOptions[0].text;
+  const contactName = document.getElementById('contact-name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const goal = document.getElementById('goal').selectedOptions[0].text;
+  const participants = document.getElementById('participants').value || 'Not specified';
+  const message = document.getElementById('message').value || 'No additional details provided';
+  const endDate = document.getElementById('end-date').value;
 
-  // Handle image upload
-  const imageFile = document.getElementById('org-image').files[0];
-  if (imageFile) {
-    try {
-      formData.image = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(imageFile);
-      });
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      alert('Error processing image. Please try a smaller file.');
-      return;
-    }
-  }
+  // Format email body
+  const emailSubject = `New Fundraiser Request: ${orgName}`;
+  const emailBody = `
+NEW FUNDRAISER REQUEST
+=====================
 
-  // Generate unique slug
-  const slug = formData.orgName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .substring(0, 50);
+Organization Details:
+- Organization Name: ${orgName}
+- Organization Type: ${orgType}
+- Fundraising Goal: ${goal}
+- Number of Participants: ${participants}
+- End Date: ${endDate}
 
-  // Check for existing slug
-  const existing = JSON.parse(localStorage.getItem('ipop_fundraisers') || '[]');
-  const existingSlug = existing.find(f => f.slug === slug);
-  const finalSlug = existingSlug ? slug + '-' + Date.now() : slug;
+Contact Information:
+- Contact Person: ${contactName}
+- Email: ${email}
+- Phone: ${phone}
 
-  formData.slug = finalSlug;
-  formData.description = formData.message || `Help ${formData.orgName} reach their fundraising goal!`;
+Additional Details:
+${message}
 
-  // Save to localStorage
-  existing.push(formData);
-  localStorage.setItem('ipop_fundraisers', JSON.stringify(existing));
+---
+Submitted: ${new Date().toLocaleString()}
 
-  // Generate fundraiser URL (Shopify-compatible)
-  const fundraiserUrlObj = new URL('{{ pages.fundraiser.url }}', window.location.origin);
-  fundraiserUrlObj.searchParams.set('id', finalSlug);
-  const fundraiserUrl = fundraiserUrlObj.toString();
+ACTION ITEMS:
+1. Create Shopify page: /pages/${orgName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+2. Assign template: page.fundraiser.liquid
+3. Add organization details to page content
+4. Email customer their unique fundraiser URL
+5. (Optional) Upload organization photo if provided
+  `.trim();
 
-  // Show success message
+  // Create mailto link
+  const mailtoLink = `mailto:contact@ipopgourmet.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+  // Show success message first
   document.getElementById('success-message').innerHTML = `
-    <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">🎉 Your Fundraiser is Live!</h3>
+    <h3 style="font-size: 2.4rem; margin-bottom: 1.6rem;">📧 Request Submitted!</h3>
     <p style="font-size: 1.8rem; margin-bottom: 2.4rem;">
-      Great news, ${formData.contactName}! Your fundraiser for <strong>${formData.orgName}</strong> is now active.
+      Thank you, ${contactName}! We've received your fundraiser request for <strong>${orgName}</strong>.
+    </p>
+    <p style="font-size: 1.6rem; line-height: 1.8; margin-bottom: 2.4rem;">
+      An email will open with your fundraiser details. Please send it to complete your request.
+      Our team will create your custom fundraiser page and send you the unique link within <strong>24 hours</strong>.
     </p>
     <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 8px; margin-bottom: 2.4rem;">
-      <p style="font-size: 1.4rem; margin-bottom: 1rem; opacity: 0.9;">Your Unique Fundraiser Link:</p>
-      <input
-        type="text"
-        value="${fundraiserUrl}"
-        readonly
-        onclick="this.select()"
-        style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: none; border-radius: 4px; background: white; color: #333; text-align: center; font-weight: 600; cursor: pointer;"
-      >
+      <p style="font-size: 1.4rem; margin-bottom: 1rem; opacity: 0.9;">📋 What to expect:</p>
+      <ul style="text-align: left; font-size: 1.4rem; line-height: 2; list-style: none; padding: 0;">
+        <li>✉️ We'll review your request</li>
+        <li>🎨 Create your custom fundraiser page</li>
+        <li>🔗 Email you your unique sharing link</li>
+        <li>🚀 Start fundraising in 24 hours!</li>
+      </ul>
     </div>
-    <div style="display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.4rem;">
-      <a href="${fundraiserUrl}" style="background: white; color: #E63946; font-size: 1.6rem; padding: 1.4rem 2.8rem; text-decoration: none; border-radius: 8px; font-weight: 700;">
-        View Your Page
-      </a>
-      <button onclick="window.location.reload()" style="background: rgba(255,255,255,0.2); color: white; font-size: 1.6rem; padding: 1.4rem 2.8rem; border: 2px solid white; border-radius: 8px; font-weight: 700; cursor: pointer;">
-        Create Another
-      </button>
-    </div>
-    <p style="font-size: 1.6rem; line-height: 1.6;">
-      Share your fundraiser link with friends, family, and supporters.
-      Every purchase contributes <strong>50% profit</strong> toward your goal!
-    </p>
+    <button onclick="window.location.reload()" style="background: white; color: #4CAF50; font-size: 1.6rem; padding: 1.4rem 2.8rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;">
+      Submit Another Request
+    </button>
   `;
 
   // Hide form, show success
@@ -357,6 +338,11 @@ document.getElementById('fundraiser-form').addEventListener('submit', async func
   document.getElementById('what-happens-next').style.display = 'none';
   document.getElementById('success-section').style.display = 'block';
   document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Open email client after short delay
+  setTimeout(function() {
+    window.location.href = mailtoLink;
+  }, 500);
 });
 </script>
 

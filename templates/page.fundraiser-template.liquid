@@ -1,0 +1,239 @@
+{% comment %}
+  Template: page.fundraiser-template.liquid
+  Purpose: Template for creating individual fundraiser pages
+
+  INSTRUCTIONS FOR CREATING A NEW FUNDRAISER:
+  1. Create a new page in Shopify Admin (Pages > Add page)
+  2. Set page handle to: fundraiser-[organization-name-slug]
+     Example: fundraiser-lincoln-soccer
+  3. Assign this template to the page
+  4. Replace the following placeholders in the page content editor:
+     - [ORGANIZATION_NAME] → e.g., "Lincoln High School Soccer Team"
+     - [ORG_TYPE] → e.g., "School" or "Sports Team"
+     - [DESCRIPTION] → e.g., "Help us fund new uniforms and travel to state championships!"
+     - [GOAL] → e.g., "2500" (just the number)
+     - [END_DATE] → e.g., "2026-05-31"
+     - [IMAGE_URL] → Optional: Upload image to Files and paste URL
+  5. Email the customer their unique URL: /pages/fundraiser-[org-name-slug]
+{% endcomment %}
+
+{{ 'custom-home.css' | asset_url | stylesheet_tag }}
+
+<!-- Hero Section -->
+<section style="background: linear-gradient(135deg, #E63946 0%, #c62e39 100%); color: white; padding: 6rem 0;">
+  <div style="max-width: 900px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+
+    <!-- Organization Image (Optional) -->
+    {% comment %}
+    Uncomment and add image URL if organization provided a photo:
+    <img
+      src="[IMAGE_URL]"
+      alt="[ORGANIZATION_NAME]"
+      style="max-width: 300px; max-height: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); margin-bottom: 2rem;"
+    >
+    {% endcomment %}
+
+    <!-- Organization Badge -->
+    <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 0.8rem 2rem; border-radius: 100px; font-size: 1.4rem; font-weight: 600; margin-bottom: 1.6rem; text-transform: uppercase; letter-spacing: 1px;">
+      {{ page.metafields.custom.org_type | default: 'SCHOOL' }}
+    </div>
+
+    <!-- Organization Name -->
+    <h1 style="font-size: 4.8rem; font-weight: 700; margin-bottom: 1.6rem; line-height: 1.2;">
+      {{ page.title }}
+    </h1>
+
+    <!-- Description -->
+    <p style="font-size: 2rem; line-height: 1.6; opacity: 0.95; max-width: 700px; margin: 0 auto 2.4rem;">
+      {{ page.metafields.custom.description | default: page.content }}
+    </p>
+
+    <!-- Days Remaining (if end date is set) -->
+    {%- if page.metafields.custom.end_date -%}
+      {%- assign end_date = page.metafields.custom.end_date | date: '%s' -%}
+      {%- assign now = 'now' | date: '%s' -%}
+      {%- assign seconds_diff = end_date | minus: now -%}
+      {%- assign days_remaining = seconds_diff | divided_by: 86400 -%}
+
+      {%- if days_remaining > 0 -%}
+        <div style="margin-top: 2rem; font-size: 1.8rem;">
+          <span style="background: rgba(255,255,255,0.2); padding: 1rem 2rem; border-radius: 100px;">
+            ⏰ {{ days_remaining }} {{ days_remaining | pluralize: 'day', 'days' }} remaining
+          </span>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<!-- Progress Section -->
+<section style="background: white; padding: 4rem 0;">
+  <div class="page-width" style="padding: 0 2rem;">
+    <div style="max-width: 700px; margin: 0 auto; background: #F5F5F5; padding: 3.2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+      <!-- Progress Stats -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2.4rem; margin-bottom: 2.4rem;">
+        <div style="text-align: center;">
+          <div style="font-size: 3.6rem; font-weight: 700; color: #E63946; margin-bottom: 0.4rem;">
+            $<span id="raised-amount">0</span>
+          </div>
+          <div style="font-size: 1.4rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Raised</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 3.6rem; font-weight: 700; color: #E63946; margin-bottom: 0.4rem;">
+            ${{ page.metafields.custom.goal | default: '2500' | money_without_currency | remove: ',' }}
+          </div>
+          <div style="font-size: 1.4rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Goal</div>
+        </div>
+        {%- if page.metafields.custom.end_date and days_remaining > 0 -%}
+          <div style="text-align: center;">
+            <div style="font-size: 3.6rem; font-weight: 700; color: #E63946; margin-bottom: 0.4rem;">{{ days_remaining }}</div>
+            <div style="font-size: 1.4rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">
+              {{ days_remaining | pluralize: 'Day Left', 'Days Left' }}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Progress Bar -->
+      <div style="width: 100%; height: 24px; background: #e0e0e0; border-radius: 100px; overflow: hidden; margin-bottom: 1.6rem;">
+        <div id="progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #E63946 0%, #ff5566 100%); border-radius: 100px; transition: width 1s ease-out; display: flex; align-items: center; justify-content: flex-end; padding-right: 1.6rem; color: white; font-size: 1.2rem; font-weight: 700;">
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: 1.6rem; color: #666;">
+        <span id="supporters-count">0</span> supporters have contributed so far
+      </p>
+
+      {%- if page.metafields.custom.end_date -%}
+        <p style="text-align: center; font-size: 1.6rem; color: #666; margin-top: 1rem;">
+          Fundraiser ends on {{ page.metafields.custom.end_date | date: '%A, %B %d, %Y' }}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<!-- Support CTA Section -->
+<section style="padding: 6rem 0; text-align: center;">
+  <div class="page-width" style="padding: 0 2rem;">
+    <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.6rem;">
+      Support This Fundraiser
+    </h2>
+    <p style="font-size: 1.8rem; color: #666; margin-bottom: 3.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Every purchase helps {{ page.title }} reach their goal. Choose from our delicious gourmet popcorn flavors!
+    </p>
+
+    <a
+      href="/collections/all?fundraiser={{ page.handle | remove: 'fundraiser-' }}"
+      style="display: inline-block; background: #E63946; color: white; font-size: 2rem; font-weight: 700; padding: 2rem 4rem; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);"
+      onmouseover="this.style.background='#c62e39'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(230, 57, 70, 0.4)';"
+      onmouseout="this.style.background='#E63946'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(230, 57, 70, 0.3)';"
+    >
+      Shop Gourmet Popcorn
+    </a>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.4rem; max-width: 700px; margin: 4rem auto 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🍿</div>
+        <div style="font-size: 1.6rem; font-weight: 600;">12 Delicious Flavors</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">💰</div>
+        <div style="font-size: 1.6rem; font-weight: 600;">50% Profit to Fundraiser</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">📦</div>
+        <div style="font-size: 1.6rem; font-weight: 600;">Fresh & Fast Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Share Section -->
+<section style="background: #F5F5F5; padding: 6rem 0;">
+  <div style="max-width: 700px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+    <h2 style="font-size: 2.8rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.6rem;">
+      Help Spread the Word!
+    </h2>
+    <p style="font-size: 1.6rem; color: #666; margin-bottom: 2.4rem;">
+      Share this fundraiser with friends, family, and colleagues to help us reach our goal faster.
+    </p>
+
+    <div style="background: white; padding: 1.6rem; border-radius: 8px; border: 2px solid #CCC; margin-bottom: 2.4rem;">
+      <input
+        type="text"
+        value="{{ page.url | prepend: shop.url }}"
+        readonly
+        onclick="this.select(); navigator.clipboard.writeText(this.value).then(() => alert('Link copied to clipboard!'));"
+        style="width: 100%; border: none; font-size: 1.4rem; text-align: center; cursor: pointer; background: transparent;"
+      >
+    </div>
+
+    <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
+      <a
+        href="mailto:?subject=Support {{ page.title | url_encode }}&body=Help us reach our goal! {{ page.url | prepend: shop.url | url_encode }}"
+        style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.2rem 2.4rem; font-size: 1.4rem; font-weight: 600; border: 2px solid #CCC; border-radius: 8px; background: white; color: #2D2D2D; text-decoration: none; transition: all 0.3s ease;"
+        onmouseover="this.style.borderColor='#E63946'; this.style.color='#E63946';"
+        onmouseout="this.style.borderColor='#CCC'; this.style.color='#2D2D2D';"
+      >
+        📧 Email
+      </a>
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: shop.url | url_encode }}"
+        target="_blank"
+        rel="noopener"
+        style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.2rem 2.4rem; font-size: 1.4rem; font-weight: 600; border: 2px solid #CCC; border-radius: 8px; background: white; color: #2D2D2D; text-decoration: none; transition: all 0.3s ease;"
+        onmouseover="this.style.borderColor='#E63946'; this.style.color='#E63946';"
+        onmouseout="this.style.borderColor='#CCC'; this.style.color='#2D2D2D';"
+      >
+        📘 Facebook
+      </a>
+      <a
+        href="https://twitter.com/intent/tweet?text=Support {{ page.title | url_encode }}!&url={{ page.url | prepend: shop.url | url_encode }}"
+        target="_blank"
+        rel="noopener"
+        style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.2rem 2.4rem; font-size: 1.4rem; font-weight: 600; border: 2px solid #CCC; border-radius: 8px; background: white; color: #2D2D2D; text-decoration: none; transition: all 0.3s ease;"
+        onmouseover="this.style.borderColor='#E63946'; this.style.color='#E63946';"
+        onmouseout="this.style.borderColor='#CCC'; this.style.color='#2D2D2D';"
+      >
+        🐦 Twitter
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Mock progress tracking (replace with real Shopify order data later)
+// For MVP, you can manually update these values in the script or via metafields
+document.addEventListener('DOMContentLoaded', function() {
+  const goal = {{ page.metafields.custom.goal | default: 2500 }};
+  const raised = {{ page.metafields.custom.raised | default: 0 }}; // Update this manually via metafield
+  const supporters = {{ page.metafields.custom.supporters | default: 0 }}; // Update this manually via metafield
+
+  const percentage = Math.min(Math.floor((raised / goal) * 100), 100);
+
+  // Update display
+  document.getElementById('raised-amount').textContent = raised.toLocaleString();
+  document.getElementById('supporters-count').textContent = supporters;
+
+  const progressBar = document.getElementById('progress-bar');
+  setTimeout(() => {
+    progressBar.style.width = percentage + '%';
+    if (percentage > 10) {
+      progressBar.textContent = percentage + '%';
+    }
+  }, 300);
+
+  // Store fundraiser slug in session for cart attribution
+  sessionStorage.setItem('current_fundraiser', '{{ page.handle | remove: "fundraiser-" }}');
+});
+</script>
+
+<style>
+@media (max-width: 768px) {
+  h1 { font-size: 3.2rem !important; }
+  h2 { font-size: 2.4rem !important; }
+  [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+}
+</style>
