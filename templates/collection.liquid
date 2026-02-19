@@ -6,6 +6,7 @@
 {% endcomment %}
 
 {{ 'custom-home.css' | asset_url | stylesheet_tag }}
+{{ 'ipop-cart.js' | asset_url | script_tag }}
 
 <!-- Fundraiser Attribution Banner -->
 <div id="fundraiser-banner" style="display: none;">
@@ -83,7 +84,7 @@
                   {%- for variant in product.variants limit: 2 -%}
                     <button
                       class="size-btn"
-                      onclick="window.iPOPCart.addToCart({{ product.id }}, {{ variant.id }}, '{{ product.title | escape }}', '{{ variant.title | escape }}', {{ variant.price }})"
+                      onclick="window.iPOPCart.addToCart({{ variant.id }}, 1)"
                       style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
                       onmouseover="this.style.background='#E63946'; this.style.color='white';"
                       onmouseout="this.style.background='white'; this.style.color='#E63946';"
@@ -96,12 +97,12 @@
                   {%- assign variant = product.variants.first -%}
                   <button
                     class="size-btn"
-                    onclick="window.iPOPCart.addToCart({{ product.id }}, {{ variant.id }}, '{{ product.title | escape }}', 'Standard', {{ variant.price }})"
+                    onclick="window.iPOPCart.addToCart({{ variant.id }}, 1)"
                     style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
                     onmouseover="this.style.background='#E63946'; this.style.color='white';"
                     onmouseout="this.style.background='white'; this.style.color='#E63946';"
                   >
-                    <div>Standard</div>
+                    <div>Add to Cart</div>
                     <div style="font-size: 1.8rem; margin-top: 0.4rem;">{{ variant.price | money }}</div>
                   </button>
                 {%- endif -%}
@@ -112,6 +113,18 @@
       {%- else -%}
         <!-- Fallback: All 12 flavors (displayed until you add Shopify products) -->
 
+        <!-- Admin Notice -->
+        <div style="grid-column: 1 / -1; background: #FFF9E6; border: 3px solid #FFD60A; border-radius: 12px; padding: 2.4rem; margin-bottom: 2rem;">
+          <h3 style="font-size: 2rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1rem;">⚠️ Admin Notice: Add Products to Enable Shopping</h3>
+          <p style="font-size: 1.6rem; color: #2D2D2D; line-height: 1.6; margin-bottom: 1rem;">
+            The popcorn flavors below are <strong>placeholder previews</strong> and cannot be purchased yet.
+          </p>
+          <p style="font-size: 1.6rem; color: #2D2D2D; line-height: 1.6;">
+            To enable shopping, go to <strong>Shopify Admin → Products → Add product</strong> and create your popcorn products with variants (Snack Size, Value Size, etc.).
+            Once you add real products to this collection, they'll replace these placeholders and customers can purchase them!
+          </p>
+        </div>
+
         <!-- 1. Kettle Corn -->
         <div class="product-card" style="background: #FFFBEB; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <div class="product-image" style="aspect-ratio: 1; background: white; display: flex; align-items: center; justify-content: center;">
@@ -121,8 +134,8 @@
             <h3 style="font-size: 2.4rem; font-weight: 700; color: #2D2D2D; margin-bottom: 1.2rem;">Kettle Corn</h3>
             <p style="font-size: 1.4rem; color: #666; line-height: 1.6; margin-bottom: 2rem;">The perfect balance of sweet and salty. Our classic recipe that started it all.</p>
             <div class="product-sizes" style="display: flex; gap: 1.2rem; margin-top: 2rem;">
-              <button class="size-btn" style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer;"><div>Snack Size</div><div style="font-size: 1.8rem; margin-top: 0.4rem;">$10</div></button>
-              <button class="size-btn" style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: white; border: 2px solid #E63946; color: #E63946; border-radius: 8px; cursor: pointer;"><div>Value Size</div><div style="font-size: 1.8rem; margin-top: 0.4rem;">$15</div></button>
+              <button class="size-btn" disabled style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: #E0E0E0; border: 2px solid #CCC; color: #999; border-radius: 8px; cursor: not-allowed; opacity: 0.6;"><div>Snack Size</div><div style="font-size: 1.4rem; margin-top: 0.4rem;">Placeholder</div></button>
+              <button class="size-btn" disabled style="flex: 1; padding: 1.2rem; font-size: 1.4rem; font-weight: 600; background: #E0E0E0; border: 2px solid #CCC; color: #999; border-radius: 8px; cursor: not-allowed; opacity: 0.6;"><div>Value Size</div><div style="font-size: 1.4rem; margin-top: 0.4rem;">Placeholder</div></button>
             </div>
           </div>
         </div>
