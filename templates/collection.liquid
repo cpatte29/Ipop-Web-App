@@ -372,7 +372,7 @@
   // Get fundraiser from URL or sessionStorage
   function getFundraiser() {
     const urlParams = new URLSearchParams(window.location.search);
-    const fundraiserParam = urlParams.get('fundraiser') || urlParams.get('id');
+    const fundraiserParam = urlParams.get('ref') || urlParams.get('fundraiser') || urlParams.get('id');
 
     if (fundraiserParam) {
       sessionStorage.setItem('current_fundraiser', fundraiserParam);

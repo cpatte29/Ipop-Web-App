@@ -37,6 +37,15 @@
 
       <!-- Right-side Actions -->
       <div class="nav-actions">
+        <!-- Fundraiser Sign In -->
+        <a href="/tools/affiliates" class="fundraiser-signin-btn" aria-label="Fundraiser sign in">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Fundraiser Login</span>
+        </a>
+
         <!-- Cart -->
         <a href="/cart" class="cart-link" aria-label="Shopping cart">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,6 +74,7 @@
       <li><a href="/collections/all" class="mobile-link">Shop Popcorn</a></li>
       <li><a href="/pages/about-us" class="mobile-link">About Us</a></li>
       <li><a href="/cart" class="mobile-link">Cart ({{ cart.item_count }})</a></li>
+      <li><a href="/tools/affiliates" class="mobile-link mobile-link--signin">🔑 Fundraiser Login</a></li>
     </ul>
   </div>
 </header>
@@ -141,6 +151,31 @@
   align-items: center;
   gap: 1.2rem;
   flex-shrink: 0;
+}
+
+/* ── Fundraiser Sign In Button ────────────────── */
+.fundraiser-signin-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.4rem;
+  background: #E63946;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+.fundraiser-signin-btn:hover {
+  background: #c62e39;
+  transform: translateY(-1px);
+}
+
+.mobile-link--signin {
+  color: #E63946 !important;
+  font-weight: 700;
 }
 
 .cart-link {

@@ -1,0 +1,164 @@
+{% comment %}
+  Template: page.fundraiser-portal.liquid
+  Purpose: Fundraiser login/dashboard portal powered by GoAffPro
+
+  SETUP INSTRUCTIONS:
+  1. In Shopify Admin → Pages → Add page
+     - Title: "Fundraiser Dashboard"
+     - Handle: fundraiser-portal
+     - Template: page.fundraiser-portal
+     - Save & Publish
+
+  2. GoAffPro will automatically create a portal at /tools/affiliates
+     That is the primary login — this page adds branding and instructions.
+
+  3. To embed the full GoAffPro portal here, GoAffPro provides an
+     embed snippet in their app settings under:
+     GoAffPro Admin → Settings → Portal → Embed Code
+     Paste that snippet into the "GoAffPro Portal Embed" section below.
+{% endcomment %}
+
+{{ 'custom-home.css' | asset_url | stylesheet_tag }}
+
+<!-- Hero -->
+<section style="background: linear-gradient(135deg, #E63946 0%, #c62e39 100%); color: white; padding: 6rem 0; text-align: center;">
+  <div style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
+    <div style="font-size: 5rem; margin-bottom: 1.6rem;">🎯</div>
+    <h1 style="font-size: 4.8rem; font-weight: 700; margin-bottom: 1.6rem;">Fundraiser Dashboard</h1>
+    <p style="font-size: 2rem; opacity: 0.95; margin-bottom: 3.2rem;">
+      Sign in to track your progress, view your unique link, and see your earnings in real time.
+    </p>
+    <a
+      href="/tools/affiliates"
+      style="display: inline-block; background: #FFD60A; color: #2D2D2D; font-size: 1.8rem; font-weight: 700; padding: 1.6rem 3.6rem; border-radius: 8px; text-decoration: none; transition: all 0.2s ease;"
+      onmouseover="this.style.background='#FFC300'; this.style.transform='translateY(-2px)';"
+      onmouseout="this.style.background='#FFD60A'; this.style.transform='translateY(0)';"
+    >
+      Sign In to Your Dashboard →
+    </a>
+  </div>
+</section>
+
+<!-- What You Can See Section -->
+<section style="padding: 6rem 0; background: white;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+    <h2 style="font-size: 3.6rem; font-weight: 700; color: #2D2D2D; text-align: center; margin-bottom: 1.2rem;">
+      What You'll See in Your Dashboard
+    </h2>
+    <p style="text-align: center; font-size: 1.8rem; color: #666; margin-bottom: 4rem;">
+      Your GoAffPro dashboard gives you everything you need to run a successful fundraiser.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.4rem;">
+
+      <div style="background: linear-gradient(135deg, #FFF0F1 0%, #FFE5E7 100%); border: 2px solid #FFD6D9; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">📊</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #E63946; margin-bottom: 1rem;">Real-Time Stats</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          See total visits, orders placed, and revenue generated from your unique fundraiser link — updated instantly.
+        </p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #FFFBEB 0%, #FFF4CC 100%); border: 2px solid #FFE999; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">🔗</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #CC9900; margin-bottom: 1rem;">Your Unique Link</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          Copy your personalized fundraiser link and share it with supporters via text, email, or social media.
+        </p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #F0FFF4 0%, #DCFFE8 100%); border: 2px solid #B8F5CC; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">💰</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #2E7D32; margin-bottom: 1rem;">Earnings Tracker</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          Track your total 50% profit earned from every popcorn order. Watch your fundraising total grow!
+        </p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 2px solid #BFDBFE; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">📦</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #1D4ED8; margin-bottom: 1rem;">Order History</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          See every order placed through your link — date, amount, and profit — all in one place.
+        </p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #FDF4FF 0%, #F3E8FF 100%); border: 2px solid #E9D5FF; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">📣</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #7C3AED; margin-bottom: 1rem;">Share Tools</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          Built-in social sharing tools to post your fundraiser to Facebook, Twitter, and more with one click.
+        </p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #FFF7F0 0%, #FFE8D6 100%); border: 2px solid #FFD0A8; border-radius: 16px; padding: 2.8rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1.2rem;">🏆</div>
+        <h3 style="font-size: 2rem; font-weight: 700; color: #C2410C; margin-bottom: 1rem;">Goal Progress</h3>
+        <p style="font-size: 1.5rem; color: #666; line-height: 1.6;">
+          Visual progress towards your fundraising goal so you always know how close you are.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GoAffPro Embedded Portal -->
+<section style="background: #F5F5F5; padding: 6rem 0;">
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
+    <h2 style="font-size: 3.2rem; font-weight: 700; color: #2D2D2D; text-align: center; margin-bottom: 1.2rem;">
+      Access Your Account
+    </h2>
+    <p style="text-align: center; font-size: 1.8rem; color: #666; margin-bottom: 4rem;">
+      Sign in below or use the button above to open the full dashboard.
+    </p>
+
+    <!-- ╔══════════════════════════════════════════════════════════════╗ -->
+    <!-- ║  PASTE YOUR GOAFFPRO EMBED CODE HERE                        ║ -->
+    <!-- ║  GoAffPro Admin → Settings → Portal → Embed Code            ║ -->
+    <!-- ╚══════════════════════════════════════════════════════════════╝ -->
+    <div id="goaffpro-account-page"></div>
+    <script type="text/javascript" src="https://api.goaffpro.com/loader.js?shop={{ shop.permanent_domain }}"></script>
+    <!-- ╔══════════════════════════════════════════════════════════════╗ -->
+    <!-- ║  END GOAFFPRO EMBED                                          ║ -->
+    <!-- ╚══════════════════════════════════════════════════════════════╝ -->
+
+  </div>
+</section>
+
+<!-- New Fundraiser CTA -->
+<section style="background: #2D2D2D; color: white; padding: 6rem 0; text-align: center;">
+  <div style="max-width: 700px; margin: 0 auto; padding: 0 2rem;">
+    <h2 style="font-size: 3.2rem; font-weight: 700; margin-bottom: 1.6rem;">Don't Have an Account Yet?</h2>
+    <p style="font-size: 1.8rem; color: #CCC; margin-bottom: 3.2rem; line-height: 1.7;">
+      Start your fundraiser today! Fill out our request form and we'll set up your account and unique link within 24 hours.
+    </p>
+    <div style="display: flex; gap: 1.6rem; justify-content: center; flex-wrap: wrap;">
+      <a
+        href="/pages/start-fundraiser"
+        style="display: inline-block; background: #E63946; color: white; font-size: 1.8rem; font-weight: 700; padding: 1.6rem 3.2rem; border-radius: 8px; text-decoration: none; transition: background 0.2s;"
+        onmouseover="this.style.background='#c62e39';"
+        onmouseout="this.style.background='#E63946';"
+      >
+        Start a Fundraiser
+      </a>
+      <a
+        href="/pages/how-it-works"
+        style="display: inline-block; background: transparent; color: white; font-size: 1.8rem; font-weight: 700; padding: 1.6rem 3.2rem; border-radius: 8px; text-decoration: none; border: 2px solid rgba(255,255,255,0.4); transition: border-color 0.2s;"
+        onmouseover="this.style.borderColor='white';"
+        onmouseout="this.style.borderColor='rgba(255,255,255,0.4)';"
+      >
+        How It Works
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  h1 { font-size: 3.2rem !important; }
+  h2 { font-size: 2.4rem !important; }
+  [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  [style*="display: flex"][style*="gap: 1.6rem"] { flex-direction: column; align-items: center; }
+}
+</style>
